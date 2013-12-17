@@ -1,0 +1,11 @@
+0 * * * * lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cronjob.sh > /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cronlog/cronjob_`date +\%Y-\%m-\%d_\%H-\%M-\%S`.log 2>&1
+55 0 * * 0 lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cleanLogFiles.sh
+0 0,11 * * * lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrvalidation/Calibration/ChannelStatus/CMSSW_4_1_2/src/BadComponentAnalysis/cronjob.sh > /afs/cern.ch/cms/tracker/sistrvalidation/Calibration/ChannelStatus/CMSSW_4_1_2/src/BadComponentAnalysis/cronlog/cronjob_`date +\%Y-\%m-\%d_\%H-\%M-\%S`.log 2>&1
+55 0 * * 0 lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrvalidation/Calibration/ChannelStatus/CMSSW_4_1_2/src/BadComponentAnalysis/cleanLogFiles.sh
+55 * * * * lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/cronjobDCS.sh > /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/cronlog/cronjob_`date +\%Y-\%m-\%d_\%H-\%M-\%S`.log 2>&1
+52 0 * * 0 lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/cleanLogFilesDCS.sh
+55 * * * * lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/cronjobDCS.sh > /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/cronlog/cronjob_`date +\%Y-\%m-\%d_\%H-\%M-\%S`.log 2>&1
+0 13 * * * lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrvalidation/Calibration/CalibrationTree/config/SubmitBatchJobs.sh > /afs/cern.ch/cms/tracker/sistrvalidation/Calibration/CalibrationTree/cronlog/cronjob_`date +\%Y-\%m-\%d_\%H-\%M-\%S`.log 2>&1
+55 0 * * 0 lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrvalidation/Calibration/CalibrationTree/config/cleanLogFiles.sh
+# Alarm for the DCS
+20 0 * * 0 lxplus5.cern.ch /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/Alarm.py

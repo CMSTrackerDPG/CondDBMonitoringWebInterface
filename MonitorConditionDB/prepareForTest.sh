@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# this script delete a few root files and an few txt files related to one IOV of one tag 
+# for each kind of strip condition objects in order to test the machinery to produce the monitoring
+# plots and files
+#
+
+# SiStripFedCabling
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/rootfiles/SiStripFedCabling_GR10_v1_hlt_Run_209457.root
+# SiStripLatency
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripLatency/SiStripLatency_GR10_v2_hlt/LatencyLog/LatencyInfo_Run211197.txt
+# SiStripLorentzAngle
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripLorentzAngle/SiStripLorentzAngleDeco_GR10_v2_offline/rootfiles/SiStripLorentzAngleDeco_GR10_v2_offline_Run_185189.root
+# SiStripNoise
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripNoise/SiStripNoise_GR10_v1_hlt/rootfiles/SiStripNoise_GR10_v1_hlt_Run_211725.root
+# SiStripPedestal
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripPedestal/SiStripPedestals_GR10_v2_hlt/rootfiles/SiStripPedestals_GR10_v2_hlt_Run_211725.root
+# SiStripShitsAndCrosstalk
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripShiftAndCrosstalk/SiStripShiftAndCrosstalk_GR10_v3_offline/ShiftAndCrosstalkLog/ShiftAndCrosstalkInfo_Run185189.txt
+# SiStripThreshold
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripThreshold/SiStripThreshold_GR10_v1_hlt/rootfiles/SiStripThreshold_GR10_v1_hlt_Run_211725.root
+# SiStripApvGain
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripApvGain/SiStripApvGain_GR10_v1_hlt/rootfiles/SiStripApvGain_GR10_v1_hlt_Run_128408.root
+# SiStripBadChannel
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripBadChannel/SiStripBadChannel_FromOfflineCalibration_GR10_v6_offline/rootfiles/SiStripBadChannel_FromOfflineCalibration_GR10_v6_offline_Run_209303.root
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prep/CMS_COND_STRIP/DBTagCollection/SiStripBadChannel/SiStripBadChannel_PCL_v0_prompt/rootfiles/SiStripBadChannel_PCL_v0_prompt_Run_166512.root
+# NoiseRatio
+rm /afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripNoise/NoiseRatios/SiStripNoise_GR10_v1_hlt_SiStripApvGain_GR10_v1_hlt/rootfiles/SiStripNoise_GR10_v1_hlt_SiStripApvGain_GR10_v1_hlt_Run_211725.root
+
