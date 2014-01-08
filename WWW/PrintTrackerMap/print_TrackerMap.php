@@ -13,7 +13,7 @@ $max="";
 $logscale="False";
 $withpixel="False";
 $cmsprel="False";
-$release="CMSSW_5_3_7_patch4";
+$release="CMSSW_5_3_14";
 if(isset($_POST["go"])) {
   $inpfile=$_FILES['userfile']['name'];
   $title=$_POST["title"];
@@ -41,8 +41,8 @@ if(isset($_POST["go"])) {
   <input name="withpixel" value="False" type="radio" <?php if($withpixel=="False") {echo "checked";} ?> />Strip
   <br>
   Release (please use dev from time to time and report anomalies): 
-<input name="release" value="CMSSW_5_3_7_patch4" type="radio" <?php if($release=="CMSSW_5_3_7_patch4") {echo "checked";} ?> />CMSSW_5_3_7_patch4 (prod), 
-  <input name="release" value="CMSSW_5_3_14" type="radio" <?php if($release=="CMSSW_5_3_14") {echo "checked";} ?> />CMSSW_5_3_14 (dev),
+<input name="release" value="CMSSW_5_3_7_patch4" type="radio" <?php if($release=="CMSSW_5_3_7_patch4") {echo "checked";} ?> />CMSSW_5_3_7_patch4 (old), 
+  <input name="release" value="CMSSW_5_3_14" type="radio" <?php if($release=="CMSSW_5_3_14") {echo "checked";} ?> />CMSSW_5_3_14 (prod),
   <input name="release" value="CMSSW_7_0_X_2013-12-14-1400" type="radio" <?php if($release=="CMSSW_7_0_X_2013-12-14-1400") {echo "checked";} ?> />CMSSW_7_0_X (test)
 <br>
     <input type="submit" name="go" value="Send" />
