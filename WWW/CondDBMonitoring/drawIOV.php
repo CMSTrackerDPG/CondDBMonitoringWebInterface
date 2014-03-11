@@ -13,6 +13,7 @@ function drawIOV($rootpath,$dirname,$wantediov) {
   else if(strstr($dirname,"SiStripLatency")==$dirname) drawLatencyIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripThreshold")==$dirname) drawThresholdIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripShiftAndCrosstalk")==$dirname) drawShiftAndCrosstalkIOV("${rootpath}${dirname}",$wantediov);
+  else if(strstr($dirname,"SiStripAPVPhaseOffsets")==$dirname) drawAPVPhaseOffsetsIOV("${rootpath}${dirname}",$wantediov);
 
 }
 
@@ -71,6 +72,11 @@ function drawLatencyIOV($directory,$wantediov) {
 function drawShiftAndCrosstalkIOV($directory,$wantediov) {
 
   echo "<a href='$directory/ShiftAndCrosstalkLog/ShiftAndCrosstalkInfo_Run${wantediov}.txt'> ShiftAndCrossTalkInfo</a><br>"; 
+}
+
+function drawAPVPhaseOffsetsIOV($directory,$wantediov) {
+
+  echo "<a href='$directory/APVPhaseOffsetsLog/APVPhaseOffsetsInfo_Run${wantediov}.txt'> APVPhaseOffsetsInfo</a><br>"; 
 }
 
 function drawNoiseIOV($directory,$wantediov) {

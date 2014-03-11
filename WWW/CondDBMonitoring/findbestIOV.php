@@ -45,6 +45,11 @@ function findbestIOV($runnumber,$tagnum,&$dirname,$rootpath,&$wantediovs,&$wante
     $searchpattern="ShiftAndCrosstalkInfo_Run%d.txt";
     $lspattern="ShiftAndCrosstalkInfo_Run*.txt";
   }
+  if(strstr($dirname[$tagnum],"SiStripAPVPhaseOffsets")==$dirname[$tagnum]) {
+    $directory="$rootpath/$dirname[$tagnum]/APVPhaseOffsetsLog/";
+    $searchpattern="APVPhaseOffsetsInfo_Run%d.txt";
+    $lspattern="APVPhaseOffsetsInfo_Run*.txt";
+  }
   if(strstr($dirname[$tagnum],"SiStripNoise/NoiseRatios")==$dirname[$tagnum]) {
     $directory="$rootpath/$dirname[$tagnum]/plots/";
     $searchpattern="Run_%d_TkMap.png";

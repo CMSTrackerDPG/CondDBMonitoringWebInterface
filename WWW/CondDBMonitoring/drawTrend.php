@@ -12,6 +12,7 @@ function drawTrend($rootpath,$dirname) {
   else if(strstr($dirname,"SiStripLorentzAngle")==$dirname) drawLorentzAngleTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripLatency")==$dirname) drawLatencyTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripShiftAndCrosstalk")==$dirname) drawShiftAndCrosstalkTrend("${rootpath}${dirname}");
+  else if(strstr($dirname,"SiStripAPVPhaseOffsets")==$dirname) drawAPVPhaseOffsetsTrend("${rootpath}${dirname}");
 
 }
 
@@ -154,6 +155,12 @@ function drawLatencyTrend($directory) {
 function drawShiftAndCrosstalkTrend($directory) {
 
   drawGenericTrend("ShiftAndCrosstalk",$directory);
+
+}
+
+function drawAPVPhaseOffsetsTrend($directory) {
+
+  drawGenericTrend("APVPhaseOffsets",$directory);
 
 }
 
