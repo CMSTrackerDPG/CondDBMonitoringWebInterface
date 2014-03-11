@@ -32,7 +32,9 @@ eval `scramv1 runtime -sh`
 
 afstokenchecker.sh "My Scram Variable $SCRAM_ARCH"
 
-cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB
+WORKDIR="/afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/workdir_`date +%Y%m%d%H%M`"
+mkdir $WORKDIR
+cd $WORKDIR
 #./MonitorDB_NewDirStructure_KeepTagLinks.sh cms_orcoff_prod CMS_COND_31X_FROM21X CMS_COND_31X_GLOBALTAG PromptProd
 #./MonitorDB_NewDirStructure_KeepTagLinks.sh cms_orcoff_prep CMS_COND_31X_ALL CMS_COND_30X_GLOBALTAG FrontierPrep
 #./MonitorDB_NewDirStructure_KeepTagLinks.sh cms_orcoff_prep CMS_COND_30X_STRIP CMS_COND_30X_GLOBALTAG FrontierPrep
@@ -50,6 +52,9 @@ Monitor_NoiseRatios.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG
 
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB
 #./MonitorDB_NewDirStructure.sh cms_orcoff_prod CMS_COND_21X_STRIP CMS_COND_21X_GLOBALTAG PromptProd
+
+cd ..
+rmdir $WORKDIR
 
 rm -f $LOCKFILE
 rm -f $JOBDONEFILE
