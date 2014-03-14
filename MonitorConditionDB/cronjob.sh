@@ -53,6 +53,8 @@ Monitor_NoiseRatios.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB
 #./MonitorDB_NewDirStructure.sh cms_orcoff_prod CMS_COND_21X_STRIP CMS_COND_21X_GLOBALTAG PromptProd
 
+rm -f *.txt
+rm -f *.html
 cd ..
 rmdir $WORKDIR
 
