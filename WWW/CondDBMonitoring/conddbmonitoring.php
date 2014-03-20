@@ -56,16 +56,11 @@ if ($database!="") {
   echo "<BR>";
  }
 
-if ($account!="" && $condtype=="") {
+if ($account=="GlobalTags/") {
   echo "GlobalTag ";
-  listsubdirs("globaltag","${database}${account}GlobalTags","${globaltag}");
+  listsubdirs("globaltag","${database}GlobalTags","${globaltag}");
  }
-
-if ($account!="" && $globaltag=="" && $condtype=="") {
-  echo " OR ";
- }
-
-if ($account!="" && $globaltag=="") {
+elseif ($account!="") {
   echo "Condition Types ";
   listsubdirs("condtype","${database}${account}${TAGDIR}","${condtype}");
  }
@@ -78,7 +73,7 @@ if ($globaltag!="" && $condtype=="") {
   
   echo "Tags ";
   echo "<select multiple name='tags[]' size=5>";
-  exec ("ls -F $database/$account/GlobalTags/$globaltag" , $taglist);
+  exec ("ls -F $database/GlobalTags/$globaltag" , $taglist);
   
   foreach($taglist as $tag) {
     if(strstr($tag,"NoiseRatio")) {
@@ -131,12 +126,17 @@ if ($globaltag=="" && $condtype!="") {
 for($tagnum=0;$tagnum<count($tags);$tagnum++) {
   $dirname[$tagnum]="";
   $rcdname[$tagnum]="";
+  $accname[$tagnum]="";
   if($globaltag!="" && $condtype=="") {
-    $fh = fopen("${database}${account}/GlobalTags/${globaltag}/$tags[$tagnum]","rb");
+    $fh = fopen("${database}/GlobalTags/${globaltag}/$tags[$tagnum]","rb");
     while(!feof($fh)) {
       $content = fgetss($fh);
 #    echo "$content <br>";
-      if($dirname[$tagnum]=="") list($dirname[$tagnum]) = sscanf($content,"${sitename}/${database}${account}${TAGDIR}/%s");
+      if($dirname[$tagnum]=="") {
+	list($tmp) =  sscanf($content,"${sitename}/${database}%s");
+	$accname[$tagnum] = strtok($tmp,"/")."/";
+	list($dirname[$tagnum]) = sscanf($content,"${sitename}/${database}$accname[$tagnum]${TAGDIR}/%s");
+      }
       if($rcdname[$tagnum]=="") list($rcdname[$tagnum]) = sscanf($content,"Record Name: %s");
     }
     fclose($fh);
@@ -144,9 +144,11 @@ for($tagnum=0;$tagnum<count($tags);$tagnum++) {
   if($globaltag=="" && $condtype!="") {
 #    list($dirname[$tagnum]) = sscanf($condtype,"%s/");    
     $dirname[$tagnum] = "${condtype}$tags[$tagnum]";
+    $accname[$tagnum] = "${account}";
   }
   
-  findbestIOV($runnumber,$tagnum,$dirname,"${database}${account}${TAGDIR}",$wantediovs,$wantedtrend);
+
+  findbestIOV($runnumber,$tagnum,$dirname,"${database}$accname[$tagnum]${TAGDIR}",$wantediovs,$wantedtrend);
 
  }
 ?>
@@ -156,16 +158,16 @@ for($tagnum=0;$tagnum<count($tags);$tagnum++) {
 <?php
 for($tagcount=0;$tagcount<count($tags);$tagcount++) {
 
-  echo "<H3> Tag $tags[$tagcount] Record Name: $rcdname[$tagcount]</H3>";
+  echo "<H3> Account $accname[$tagcount] Tag $tags[$tagcount] Record Name: $rcdname[$tagcount]</H3>";
 
-  echo "<a href='${sitename}/${database}${account}${TAGDIR}/$dirname[$tagcount]/Documentation/$tags[$tagcount]_documentation'>Documentation</a>";
+  echo "<a href='${sitename}/${database}$accname[$tagcount]${TAGDIR}/$dirname[$tagcount]/Documentation/$tags[$tagcount]_documentation'>Documentation</a>";
 
   foreach($wantediovs[$tagcount] as $wantediov) {
-    drawIOV("${sitename}/${database}${account}${TAGDIR}/",$dirname[$tagcount],"${wantediov}");
+    drawIOV("${sitename}/${database}$accname[$tagcount]${TAGDIR}/",$dirname[$tagcount],"${wantediov}");
   }
 
   if($wantedtrend[$tagcount]=="yes") {
-    drawTrend("${sitename}/${database}${account}${TAGDIR}/",$dirname[$tagcount]);
+    drawTrend("${sitename}/${database}$accname[$tagcount]${TAGDIR}/",$dirname[$tagcount]);
   }
 
 }
