@@ -21,13 +21,15 @@ export CMS_PATH=/afs/cern.ch/cms
 export FRONTIER_PROXY=http://cmst0frontier.cern.ch:3128
 #export FRONTIER_FORCERELOAD=long # This should not be used anymore!!!
 #export SCRAM_ARCH=slc5_ia32_gcc434
-export SCRAM_ARCH=slc5_amd64_gcc462
+#export SCRAM_ARCH=slc5_amd64_gcc462
+export SCRAM_ARCH=slc5_amd64_gcc481
 
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_3_4_1/src/
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_3_8_0_pre7/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_4_4_3/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_7_patch4/src
-cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_14/src
+#cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_14/src
+cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_0_pre11/src
 eval `scramv1 runtime -sh`
 
 afstokenchecker.sh "My Scram Variable $SCRAM_ARCH"
@@ -42,6 +44,7 @@ MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripBadComponents_Upgrade c
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripApvGain_Realistic cms_orcoff_prep CMS_COND_STRIP CMS_COND_GLOBALTAG FrontierPrep
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripNoise_DecoMode cms_orcoff_prep CMS_COND_STRIP CMS_COND_GLOBALTAG FrontierPrep
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStrip cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG PromptProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStrip cms_orcoff_prod CMS_COND_STRIP_000 CMS_COND_31X_GLOBALTAG PromptProd
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripBadChannel_PCL cms_orcoff_prep CMS_COND_STRIP CMS_COND_GLOBALTAG FrontierPrep
 Monitor_NoiseRatios.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG PromptProd 
 ##Monitor_RunInfo.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG CMS_COND_31X_RUN_INFO PromptProd
