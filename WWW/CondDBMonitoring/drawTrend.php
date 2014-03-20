@@ -10,6 +10,7 @@ function drawTrend($rootpath,$dirname) {
   else if(strstr($dirname,"SiStripPedestal")==$dirname) drawPedestalTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripApvGain")==$dirname) drawApvGainTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripLorentzAngle")==$dirname) drawLorentzAngleTrend("${rootpath}${dirname}");
+  else if(strstr($dirname,"SiStripBackPlaneCorrection")==$dirname) drawBackPlaneCorrectionTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripLatency")==$dirname) drawLatencyTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripShiftAndCrosstalk")==$dirname) drawShiftAndCrosstalkTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripAPVPhaseOffsets")==$dirname) drawAPVPhaseOffsetsTrend("${rootpath}${dirname}");
@@ -185,6 +186,12 @@ function drawApvGainTrend($directory) {
 function drawLorentzAngleTrend($directory) {
 
   drawGenericTrend("LorentzAngle",$directory);
+
+}
+
+function drawBackPlaneCorrectionTrend($directory) {
+
+  drawGenericTrend("BackPlaneCorrection",$directory);
 
 }
 

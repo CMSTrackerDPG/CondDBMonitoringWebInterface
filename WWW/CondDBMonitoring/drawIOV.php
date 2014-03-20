@@ -10,6 +10,7 @@ function drawIOV($rootpath,$dirname,$wantediov) {
   else if(strstr($dirname,"SiStripPedestal")==$dirname) drawPedestalIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripApvGain")==$dirname) drawApvGainIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripLorentzAngle")==$dirname) drawLorentzAngleIOV("${rootpath}${dirname}",$wantediov);
+  else if(strstr($dirname,"SiStripBackPlaneCorrection")==$dirname) drawBackPlaneCorrectionIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripLatency")==$dirname) drawLatencyIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripThreshold")==$dirname) drawThresholdIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripShiftAndCrosstalk")==$dirname) drawShiftAndCrosstalkIOV("${rootpath}${dirname}",$wantediov);
@@ -122,6 +123,12 @@ function drawApvGainIOV($directory,$wantediov) {
 function drawLorentzAngleIOV($directory,$wantediov) {
 
   drawGenericIOV("LorentzAngle",$directory,$wantediov);
+
+}
+
+function drawBackPlaneCorrectionIOV($directory,$wantediov) {
+
+  drawGenericIOV("BackPlaneCorrection",$directory,$wantediov);
 
 }
 

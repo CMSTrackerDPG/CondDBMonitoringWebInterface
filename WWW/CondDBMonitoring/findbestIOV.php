@@ -30,6 +30,11 @@ function findbestIOV($runnumber,$tagnum,&$dirname,$rootpath,&$wantediovs,&$wante
     $searchpattern="LorentzAngleTkMap_Run_%d.png";
     $lspattern="LorentzAngleTkMap_Run_*.png";
   }
+  if(strstr($dirname[$tagnum],"SiStripBackPlaneCorrection")==$dirname[$tagnum]) {
+    $directory="$rootpath/$dirname[$tagnum]/plots/TrackerMap/";
+    $searchpattern="BackPlaneCorrectionTkMap_Run_%d.png";
+    $lspattern="BackPlaneCorrectionTkMap_Run_*.png";
+  }
   if(strstr($dirname[$tagnum],"SiStripLatency")==$dirname[$tagnum]) {
     $directory="$rootpath/$dirname[$tagnum]/LatencyLog/";
     $searchpattern="LatencyInfo_Run%d.txt";
