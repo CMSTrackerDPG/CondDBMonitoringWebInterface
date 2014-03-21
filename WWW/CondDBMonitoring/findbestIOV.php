@@ -88,7 +88,7 @@ function findbestIOV($runnumber,$tagnum,&$dirname,$rootpath,&$wantediovs,&$wante
     echo "Select IOVs of tag $dirname[$tagnum]: ";
     echo "<select name='wantediovs${tagnum}[]' multiple size='5'>";
     foreach($runlist as $run) {
-      echo "<option value=$run>$run</option>";
+      if($run!="") echo "<option value=$run>$run</option>";
     }
     echo "</select> <br>";
 
