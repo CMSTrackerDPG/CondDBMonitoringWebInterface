@@ -44,7 +44,7 @@ if(isset($_POST["go"])) {
 <input name="release" value="CMSSW_5_3_7_patch4" type="radio" <?php if($release=="CMSSW_5_3_7_patch4") {echo "checked";} ?> />CMSSW_5_3_7_patch4 (old), 
   <input name="release" value="CMSSW_5_3_14" type="radio" <?php if($release=="CMSSW_5_3_14") {echo "checked";} ?> />CMSSW_5_3_14 (prod),
   <input name="release" value="CMSSW_6_2_7" type="radio" <?php if($release=="CMSSW_6_2_7") {echo "checked";} ?> />CMSSW_6_2_7 (it may not work),
-  <input name="release" value="CMSSW_7_0_0_pre11" type="radio" <?php if($release=="CMSSW_7_0_0_pre11") {echo "checked";} ?> />CMSSW_7_0_0_pre11 (test)
+  <input name="release" value="CMSSW_7_0_3_patch2" type="radio" <?php if($release=="CMSSW_7_0_3_patch2") {echo "checked";} ?> />CMSSW_7_0_3_patch2 (test)
 <br>
     <input type="submit" name="go" value="Send" />
 </form>
