@@ -29,7 +29,8 @@ export SCRAM_ARCH=slc5_amd64_gcc481
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_4_4_3/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_7_patch4/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_14/src
-cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_0_pre11/src
+#cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_0_pre11/src
+cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_3_patch2/src
 eval `scramv1 runtime -sh`
 
 afstokenchecker.sh "My Scram Variable $SCRAM_ARCH"
@@ -46,7 +47,7 @@ MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripNoise_DecoMode cms_orco
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStrip cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG PromptProd
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStrip cms_orcoff_prod CMS_COND_STRIP_000 CMS_COND_31X_GLOBALTAG PromptProd
 MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripBadChannel_PCL cms_orcoff_prep CMS_COND_STRIP CMS_COND_GLOBALTAG FrontierPrep
-Monitor_GlobalTags.sh SiStrip cms_orcoff_prod CMS_COND_31X_GLOBALTAG FrontierProd
+Monitor_GlobalTags.sh SiStrip cms_orcoff_prod CMS_COND_31X_GLOBALTAG PromptProd
 Monitor_NoiseRatios.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG PromptProd 
 ##Monitor_RunInfo.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG CMS_COND_31X_RUN_INFO PromptProd
 
