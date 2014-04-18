@@ -3,7 +3,8 @@ function drawIOV($rootpath,$dirname,$wantediov) {
 
   echo "<H4>IOV ${wantediov} </H4>";
 
-  if(strstr($dirname,"SiStripNoise/NoiseRatio")==$dirname) drawNoiseRatioIOV("${rootpath}${dirname}",$wantediov);
+  if(strstr($dirname,"SiStripNoise/NoiseRatios")==$dirname) drawNoiseRatioIOV("${rootpath}${dirname}",$wantediov);
+  else if(strstr($dirname,"RunInfo")==$dirname) drawBadChannelIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripFedCabling")==$dirname) drawCablingIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripBadChannel")==$dirname) drawBadChannelIOV("${rootpath}${dirname}",$wantediov);
   else if(strstr($dirname,"SiStripNoise")==$dirname) drawNoiseIOV("${rootpath}${dirname}",$wantediov);

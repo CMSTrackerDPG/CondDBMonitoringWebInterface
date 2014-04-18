@@ -10,6 +10,11 @@ function findbestIOV($runnumber,$tagnum,&$dirname,$rootpath,&$wantediovs,&$wante
     $searchpattern="QualityInfo_Run%d.txt";
     $lspattern="QualityInfo_Run*.txt";
   }
+  if(strstr($dirname[$tagnum],"RunInfo")==$dirname[$tagnum]) {
+    $directory="$rootpath/$dirname[$tagnum]/QualityLog/";
+    $searchpattern="QualityInfo_Run%d.txt";
+    $lspattern="QualityInfo_Run*.txt";
+  }
   if(strstr($dirname[$tagnum],"SiStripApvGain")==$dirname[$tagnum]) {
     $directory="$rootpath/$dirname[$tagnum]/plots/TrackerMap/";
     $searchpattern="GainTkMap_Run_%d.png";

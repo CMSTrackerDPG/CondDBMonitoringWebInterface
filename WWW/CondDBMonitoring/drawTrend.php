@@ -3,7 +3,8 @@ function drawTrend($rootpath,$dirname) {
 
   echo "<H4>Trend Plots </H4>";
 
-  if(strstr($dirname,"SiStripNoise/NoiseRatio")==$dirname) drawNoiseRatioTrend("${rootpath}${dirname}");
+  if(strstr($dirname,"SiStripNoise/NoiseRatios")==$dirname) drawNoiseRatioTrend("${rootpath}${dirname}");
+  else if(strstr($dirname,"RunInfo")==$dirname) drawBadChannelTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripFedCabling")==$dirname) drawCablingTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripBadChannel")==$dirname) drawBadChannelTrend("${rootpath}${dirname}");
   else if(strstr($dirname,"SiStripNoise")==$dirname) drawNoiseTrend("${rootpath}${dirname}");

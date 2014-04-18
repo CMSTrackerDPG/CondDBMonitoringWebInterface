@@ -79,6 +79,9 @@ if ($globaltag!="" && $condtype=="") {
     if(strstr($tag,"NoiseRatios")) {
       continue;
     }
+    if(strstr($tag,"RunInfo")) {
+      continue;
+    }
     if(in_array($tag,$tags)) {
       echo "<option value=$tag SELECTED>$tag</option>";
     }
@@ -93,6 +96,15 @@ if ($globaltag!="" && $condtype=="") {
     }
     else {
       echo "<option value=NoiseRatios/$tag>NoiseRatios/$tag</option>";
+    }
+  }
+  exec ("ls -F $database/GlobalTags/$globaltag/RunInfo" , $RItaglist);
+  foreach($RItaglist as $tag) {
+    if(in_array("RunInfo/$tag",$tags)) {
+      echo "<option value=RunInfo/$tag SELECTED>RunInfo/$tag</option>";
+    }
+    else {
+      echo "<option value=RunInfo/$tag>RunInfo/$tag</option>";
     }
   }
   
