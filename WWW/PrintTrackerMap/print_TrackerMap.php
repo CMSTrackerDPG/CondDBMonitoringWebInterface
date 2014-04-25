@@ -25,9 +25,11 @@ if(isset($_POST["go"])) {
   if(isset($_POST["withpixel"])) $withpixel=$_POST["withpixel"];
   if(isset($_POST["cmsprel"])) $cmsprel=$_POST["cmsprel"];
  }
+$debug=0;
+if(isset($_GET["debug"])) $debug=$_GET["debug"];
 ?>
 
-<form enctype="multipart/form-data" action="print_TrackerMap.php" method="POST">
+<form enctype="multipart/form-data" action="print_TrackerMap.php<?php if($debug!=0) {echo '?debug=1';} ?>" method="POST">
     <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
     <input type="hidden" name="outfile" value="/tmp/outmap_<?php echo time(); ?>.png" />
     Input file: <input name="userfile" value="<?php echo $inpfile; ?>" type="file" /><br>
@@ -41,10 +43,8 @@ if(isset($_POST["go"])) {
   <input name="withpixel" value="False" type="radio" <?php if($withpixel=="False") {echo "checked";} ?> />Strip
   <br>
   Release (please use dev from time to time and report anomalies): 
-<input name="release" value="CMSSW_5_3_7_patch4" type="radio" <?php if($release=="CMSSW_5_3_7_patch4") {echo "checked";} ?> />CMSSW_5_3_7_patch4 (old), 
   <input name="release" value="CMSSW_5_3_14" type="radio" <?php if($release=="CMSSW_5_3_14") {echo "checked";} ?> />CMSSW_5_3_14 (prod),
-  <input name="release" value="CMSSW_6_2_7" type="radio" <?php if($release=="CMSSW_6_2_7") {echo "checked";} ?> />CMSSW_6_2_7 (it may not work),
-  <input name="release" value="CMSSW_7_0_3_patch2" type="radio" <?php if($release=="CMSSW_7_0_3_patch2") {echo "checked";} ?> />CMSSW_7_0_3_patch2 (test)
+  <input name="release" value="CMSSW_7_0_4" type="radio" <?php if($release=="CMSSW_7_0_4") {echo "checked";} ?> />CMSSW_7_0_4 (dev)
 <br>
     <input type="submit" name="go" value="Send" />
 </form>
@@ -65,7 +65,11 @@ if(isset($_POST["go"])) {
        }
        $command = "./print_TrackerMap.sh $release $tmpfile '$fulltitle' '$outfile' $size $logscale $withpixel $min $max";
 //       echo $command,"<br>";
-       exec($command);
+       if($debug!=0){
+	 system($command);
+       } else {
+	 exec($command);
+       }
        // write log
        $logFile = "log/print_TrackerMap.log";
        $fh=fopen($logFile,'a');
