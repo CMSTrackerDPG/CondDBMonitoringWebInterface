@@ -30,7 +30,8 @@ export SCRAM_ARCH=slc5_amd64_gcc481
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_7_patch4/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_5_3_14/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_0_pre11/src
-cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_3_patch2/src
+#cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_3_patch2/src
+cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_4/src
 eval `scramv1 runtime -sh`
 
 afstokenchecker.sh "My Scram Variable $SCRAM_ARCH"
