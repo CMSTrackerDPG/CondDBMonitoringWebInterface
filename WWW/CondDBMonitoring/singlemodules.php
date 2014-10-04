@@ -64,6 +64,7 @@ if ($_POST['go']) {
 echo "Run Number <input type='text' value='$runnumber' name='runnumber'><br>";
 echo "Global Tag <input type='text' value='$globaltag' name='globaltag'> (leave \"DONOTEXIST\" if no GT is provided) or ";
 echo "Tag <input type='text' size=40 value='$tag' name='tag'> (much faster if a tag is provided)<br>";
+echo "A Global Tag compatible with CMSSW_7_0_4 or earlier versions has to be chosen<br>";
 echo "<input type='checkbox' value='1' name='noise'"; if(isset($_POST['noise'])) {echo "checked";};  echo "> Noise";  
 echo "<input type='checkbox' value='2' name='pedestal'"; if(isset($_POST['pedestal'])) {echo "checked";} 
 echo "> Pedestal (they can be both selected only if Global Tag is provided)<br>"; 
