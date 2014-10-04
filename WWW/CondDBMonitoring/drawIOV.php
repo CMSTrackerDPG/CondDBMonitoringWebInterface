@@ -39,6 +39,9 @@ function drawCablingIOV($directory,$wantediov) {
 
 function drawBadChannelIOV($directory,$wantediov) {
 
+  $explodeddir = explode("/",$directory);
+  $tag = $explodeddir[count($explodeddir)-1];
+
   $tkmapfile="${directory}/plots/TrackerMap/QualityTkMap_Run_${wantediov}.png";
   echo "<a href='${tkmapfile}'><img src='${tkmapfile}' hspace=5 vspace=5 border=0 height=250 width=500 ALT='${tkmapfile}'></a> <br> 
     <a href='$directory/QualityLog/QualityInfo_Run${wantediov}.txt'> QualityInfo</a>
@@ -64,6 +67,8 @@ function drawBadChannelIOV($directory,$wantediov) {
     for($i = 1; $i <= 9; $i++) echo "<a href='$directory/plots/TEC/Side${side}/Disk${i}/Profile/side__${side}__wheel__${i}__Run${wantediov}.png'> Disk${i} </a>";
   }
   echo "<br>";
+  echo "<a href='${directory}/rootfiles/${tag}_Run_${wantediov}.root'>Root file</a>";
+  echo "<br>";
 }
 
 function drawLatencyIOV($directory,$wantediov) {
@@ -82,6 +87,9 @@ function drawAPVPhaseOffsetsIOV($directory,$wantediov) {
 }
 
 function drawNoiseIOV($directory,$wantediov) {
+
+  $explodeddir = explode("/",$directory);
+  $tag = $explodeddir[count($explodeddir)-1];
 
   $type =array("Cumulative","Profile");
   $tkmapfile="${directory}/plots/TrackerMap/NoiseTkMap_Run_${wantediov}.png";
@@ -107,6 +115,8 @@ function drawNoiseIOV($directory,$wantediov) {
     }
     echo "<br>";
   }
+  echo "<a href='${directory}/rootfiles/${tag}_Run_${wantediov}.root'>Root file</a>";
+  echo "<br>";
 }
 
 function drawPedestalIOV($directory,$wantediov) {
@@ -135,32 +145,37 @@ function drawBackPlaneCorrectionIOV($directory,$wantediov) {
 
 function drawThresholdIOV($directory,$wantediov) {
 
-  drawGenericIOV("HighThreshold",$directory,$wantediov);
-  drawGenericIOV("LowThreshold",$directory,$wantediov);
+  drawGenericIOV("HighThreshold",$directory,$wantediov,"_high");
+  drawGenericIOV("LowThreshold",$directory,$wantediov,"_low");
 
 }
 
-function drawGenericIOV($prefix,$directory,$wantediov) {
+function drawGenericIOV($prefix,$directory,$wantediov,$label="") {
+
+  $explodeddir = explode("/",$directory);
+  $tag = $explodeddir[count($explodeddir)-1];
 
   $tkmapfile="${directory}/plots/TrackerMap/${prefix}TkMap_Run_${wantediov}.png";
   echo "<a href='${tkmapfile}'><img src='${tkmapfile}' hspace=5 vspace=5 border=0 height=250 width=500 ALT='${tkmapfile}'></a> <br>"; 
   echo "TIB ";
-  for($i = 1; $i <= 4; $i++) echo "<a href='$directory/plots/TIB/Layer${i}/layer__${i}__Run${wantediov}.png'> Layer${i} </a>";
+  for($i = 1; $i <= 4; $i++) echo "<a href='$directory/plots/TIB/Layer${i}/layer__${i}${label}__Run${wantediov}.png'> Layer${i} </a>";
   echo "<br>";
   echo "TOB ";
-  for($i = 1; $i <= 6; $i++) echo "<a href='$directory/plots/TOB/Layer${i}/layer__${i}__Run${wantediov}.png'> Layer${i} </a>";
+  for($i = 1; $i <= 6; $i++) echo "<a href='$directory/plots/TOB/Layer${i}/layer__${i}${label}__Run${wantediov}.png'> Layer${i} </a>";
   echo "<br>";
   echo "TID ";
   for($side = 1; $side <=2; $side++) {
     echo "Side ${side} ";
-    for($i = 1; $i <= 3; $i++) echo "<a href='$directory/plots/TID/Side${side}/Disk${i}/side__${side}__wheel__${i}__Run${wantediov}.png'> Disk${i} </a>";
+    for($i = 1; $i <= 3; $i++) echo "<a href='$directory/plots/TID/Side${side}/Disk${i}/side__${side}__wheel__${i}${label}__Run${wantediov}.png'> Disk${i} </a>";
   }
   echo "<br>";
   echo "TEC ";
   for($side = 1; $side <=2; $side++) {
     echo "Side ${side} ";
-    for($i = 1; $i <= 9; $i++) echo "<a href='$directory/plots/TEC/Side${side}/Disk${i}/side__${side}__wheel__${i}__Run${wantediov}.png'> Disk${i} </a>";
+    for($i = 1; $i <= 9; $i++) echo "<a href='$directory/plots/TEC/Side${side}/Disk${i}/side__${side}__wheel__${i}${label}__Run${wantediov}.png'> Disk${i} </a>";
   }
+  echo "<br>";
+  echo "<a href='${directory}/rootfiles/${tag}_Run_${wantediov}.root'>Root file</a>";
   echo "<br>";
 }
 ?>
