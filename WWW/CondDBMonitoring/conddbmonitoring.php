@@ -1,5 +1,11 @@
 <H1>SiStrip Conditions DB Monitoring</H1>
-
+You can find a description of the software used for this web tool in the following pages:<br>
+<a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/StripTrackerMonitoringCondDb">Twiki page of the web interface software</a><br>
+<a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/StripTrackerMonitoringCondsDb">Twiki page of DB monitoring software</a><br>
+<br>
+If you are interested in the noise and pedestal values of individual modules follow
+<a href="singlemodules.php">this link</a>
+<br><br>
 
 <?php
 include 'findbestIOV.php';
