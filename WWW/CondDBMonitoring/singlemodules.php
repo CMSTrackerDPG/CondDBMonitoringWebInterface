@@ -14,7 +14,7 @@ If you are interested in the SiStrip conditions DB content follow
 $debug=0;
 if(isset($_GET['debug'])) $debug=$_GET['debug'];
 $connstring="frontier://PromptProd/CMS_COND_31X_STRIP";
-$runnumber=0;
+$runnumber=1;
 $globaltag="DONOTEXIST";
 $tag="";
 $record="";
