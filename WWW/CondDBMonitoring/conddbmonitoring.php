@@ -156,6 +156,7 @@ for($tagnum=0;$tagnum<count($tags);$tagnum++) {
 	list($dirname[$tagnum]) = sscanf($content,"${sitename}/${database}$accname[$tagnum]${TAGDIR}/%s");
       }
       if($rcdname[$tagnum]=="") list($rcdname[$tagnum]) = sscanf($content,"Record name: %s");
+      if($rcdname[$tagnum]=="") list($rcdname[$tagnum]) = sscanf($content,"Record Name: %s");
     }
     fclose($fh);
   }
