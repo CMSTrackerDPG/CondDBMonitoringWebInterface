@@ -6,8 +6,8 @@ You can find a description of the software used for this web tool in the followi
 If you are interested in the SiStrip conditions DB content follow 
 <a href="conddbmonitoring.php">this link</a>
 <br><br>
-
-
+<font color="red">The web site runs on a SLC6 machine. In case of issues try with an older CMSSW release using the checkbox below 
+and report the problem</font><br>
 
 <?php
 #parameters<
@@ -20,11 +20,15 @@ $tag="";
 $record="";
 $condtype=0;
 $wantednorm="False";
+$wantedsimnorm="False";
 $modulelist="";
 $modulefile="";
 $time=0;
+$release="CMSSW_7_4_0_pre9";
 if ($_POST['go']) {
   $time=time();
+  $release=$_POST["release"];
+  if(strstr($release,"CMSSW_7_4_0_pre9")) $connstring="frontier://PromptProd/CMS_CONDITIONS";
   $runnumber = $_POST['runnumber'];
   $globaltag = $_POST['globaltag'];
   $tag = $_POST['tag'];
@@ -35,6 +39,7 @@ if ($_POST['go']) {
   if(isset($_POST['noise'])) $condtype = $condtype + $_POST['noise'];
   if(isset($_POST['pedestal'])) $condtype = $condtype + $_POST['pedestal'];
   if(isset($_POST['wantednorm'])) $wantednorm = $_POST['wantednorm'];
+  if(isset($_POST['wantedsimnorm'])) $wantedsimnorm = $_POST['wantedsimnorm'];
   $modulelist=$_POST['modulelist'];
   $modulefile="/tmp/modulelist_".$time.".txt";
 #  $command="echo '".$modulelist."' > ".$modulefile;
@@ -57,9 +62,10 @@ if ($_POST['go']) {
 #echo $modulelist ;echo "<br>";
 #echo $modulefile; echo "<br>";
   $command="cat ".$modulefile;
-#echo $command;
   exec($command);
-  $command = "./singleModule.sh $runnumber $modulefile $condtype '$globaltag::All' '$connstring' '$tag' '$record' $wantednorm '_$time'";
+  $globaltagstring=$globaltag."::All";
+  if(strstr($release,"CMSSW_7_4_0_pre9"))   $globaltagstring=$globaltag;
+  $command = "./singleModule.sh $release $runnumber $modulefile $condtype '$globaltagstring' '$connstring' '$tag' '$record' $wantednorm $wantedsimnorm '_$time'";
   if($debug==1) { echo $command; echo "<br>";  system($command); echo "<BR>"; }
   else {    exec($command);  }
 #system("ls -ltr /tmp");
@@ -68,16 +74,25 @@ if ($_POST['go']) {
 ?>
 
 <form action="singlemodules.php<?php if($debug!=0) {echo '?debug=1';} ?>" method="post" enctype="multipart/form-data">
+  Release: 
+  <input name="release" value="CMSSW_7_0_4" type="radio" <?php if($release=="CMSSW_7_0_4") {echo "checked";} ?> />CMSSW_7_0_4 (SLC5),
+  <input name="release" value="CMSSW_7_1_0_pre6" type="radio" <?php if($release=="CMSSW_7_1_0_pre6") {echo "checked";} ?> />CMSSW_7_1_0_pre6 (SLC6: conddb V1)
+  <input name="release" value="CMSSW_7_4_0_pre9" type="radio" <?php if($release=="CMSSW_7_4_0_pre9") {echo "checked";} ?> />CMSSW_7_4_0_pre9 (SLC6: conddb V2)
+<br>
 <?php
 echo "Run Number <input type='text' value='$runnumber' name='runnumber'><br>";
 echo "Global Tag <input type='text' value='$globaltag' name='globaltag'> (leave \"DONOTEXIST\" if no GT is provided) or ";
 echo "Tag <input type='text' size=40 value='$tag' name='tag'> (much faster if a tag is provided)<br>";
-echo "A Global Tag compatible with CMSSW_7_0_4 or earlier versions has to be chosen<br>";
+echo "<font color='blue'>A Global Tag compatible with the selected CMSSW release has to be chosen. Be careful that old GlobalTags are not known by 
+the release which uses conddb v2. Choose the correct combination of release and GlobalTag</font><br>";
 echo "<input type='checkbox' value='1' name='noise'"; if(isset($_POST['noise'])) {echo "checked";};  echo "> Noise";  
 echo "<input type='checkbox' value='2' name='pedestal'"; if(isset($_POST['pedestal'])) {echo "checked";} 
 echo "> Pedestal (they can be both selected only if Global Tag is provided)<br>"; 
 echo "<input type='checkbox' value='True' name='wantednorm'"; if(isset($_POST['wantednorm'])) {echo "checked";};  
-echo "> with gain normalization (only for noise, only when Global Tag is provided)<br>";  
+echo "> with gain normalization using the SiStripApvGainRcd also known as <em>G1</em> (only for noise, only when Global Tag is provided)<br>";  
+echo "<input type='checkbox' value='True' name='wantedsimnorm'"; if(isset($_POST['wantedsimnorm'])) {echo "checked";};  
+echo "> with SIM gain normalization using the SiStripApvGainSimRcd also known as <em>Gsim</em> 
+(only for noise, only when <strong>MC</strong> Global Tag is provided)<br>";  
 echo "Module list <br><textarea name='modulelist' value='$modulelist' rows='10' cols='16'>"; echo $modulelist; echo "</textarea><br>";
 
 ?>
