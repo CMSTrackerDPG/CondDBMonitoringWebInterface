@@ -23,7 +23,8 @@ export FRONTIER_PROXY=http://cmst0frontier.cern.ch:3128
 #export SCRAM_ARCH=slc5_ia32_gcc434
 #export SCRAM_ARCH=slc5_amd64_gcc462
 #export SCRAM_ARCH=slc5_amd64_gcc481
-export SCRAM_ARCH=slc6_amd64_gcc481
+#export SCRAM_ARCH=slc6_amd64_gcc481
+export SCRAM_ARCH=slc6_amd64_gcc491
 
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_3_4_1/src/
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_3_8_0_pre7/src
@@ -33,7 +34,8 @@ export SCRAM_ARCH=slc6_amd64_gcc481
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_0_pre11/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_3_patch2/src
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_0_4/src
-cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_1_0_pre7/src
+#cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_1_0_pre7/src
+cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_7_4_0_pre8/src
 eval `scramv1 runtime -sh`
 
 afstokenchecker.sh "My Scram Variable $SCRAM_ARCH"
@@ -53,6 +55,24 @@ MonitorDB_NewDirStructure_KeepTagLinks_generic.sh SiStripBadChannel_PCL cms_orco
 Monitor_GlobalTags.sh SiStrip cms_orcoff_prod CMS_COND_31X_GLOBALTAG PromptProd
 Monitor_NoiseRatios.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG PromptProd 
 ##Monitor_RunInfo.sh cms_orcoff_prod CMS_COND_31X_STRIP CMS_COND_31X_GLOBALTAG CMS_COND_31X_RUN_INFO PromptProd
+
+#V2
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripBadComponents_Upgrade dev FrontierPrep
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripApvGain_Realistic dev FrontierPrep
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripNoise_DecoMode dev FrontierPrep
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripBadChannel_PCL dev FrontierPrep
+#
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripApvGain pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripAPVPhase pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripFedCabling pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripLatency pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripLorentz pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripBackPlane pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripNoise pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripPedestal pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripThreshold pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripShift pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripBad pro FrontierProd
 
 #Not needed anymore, since the 21X tags won't change (they are not in use anymore)
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_2_2_6/src/
