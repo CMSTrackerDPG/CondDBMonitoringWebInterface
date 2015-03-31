@@ -1,6 +1,4 @@
 <H1>SiStrip Conditions DB Monitoring</H1>
-<H3>Nota Bene: because of the migration to conddb v2 another web interface to monitor the conddb v2 content is available 
-<a href="conddbmonitoringV2.php"> here</a> but, for the moment, it is not able to display the GlobalTag related information</H3>
 You can find a description of the software used for this web tool in the following pages:<br>
 <a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/StripTrackerMonitoringCondDb">Twiki page of the web interface software</a><br>
 <a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/StripTrackerMonitoringCondsDb">Twiki page of DB monitoring software</a><br>
@@ -16,7 +14,8 @@ include 'drawIOV.php';
 include 'drawTrend.php';
 
 #parameters
-$sitename="https://test-stripdbmonitor.web.cern.ch/test-stripdbmonitor/CondDBMonitoring";
+$sitename="https://test-stripdbmonitor.web.cern.ch/test-stripdbmonitor/CondDBMonitoringV2";
+$storagename="/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoringV2";
 $TAGDIR="DBTagCollection";
 
 $database="";
@@ -42,7 +41,7 @@ if ($_POST['go']) {
  }
 ?>
 
-<form action="conddbmonitoring.php" method="post" enctype="multipart/form-data">
+<form action="conddbmonitoringV2.php" method="post" enctype="multipart/form-data">
 
 
 
@@ -55,22 +54,22 @@ echo "<BR><BR>";
 echo "Run Number (optional) <input type='text' value='$runnumber' name='runnumber'><br>";
 
 echo "Database ";
-listsubdirs("database",".","${database}");
+listsubdirs("database","${storagename}","${database}");
 echo "<BR>";
 
 if ($database!="") {
   echo "Account ";
-  listsubdirs("account","${database}","${account}");
+  listsubdirs("account","${storagename}/${database}","${account}");
   echo "<BR>";
  }
 
 if ($account=="GlobalTags/") {
   echo "GlobalTag ";
-  listsubdirs("globaltag","${database}GlobalTags","${globaltag}");
+  listsubdirs("globaltag","${storagename}/${database}GlobalTags","${globaltag}");
  }
 elseif ($account!="") {
   echo "Condition Types ";
-  listsubdirs("condtype","${database}${account}${TAGDIR}","${condtype}");
+  listsubdirs("condtype","${storagename}/${database}${account}${TAGDIR}","${condtype}");
  }
 
 if ($account!="") {
@@ -81,7 +80,7 @@ if ($globaltag!="" && $condtype=="") {
   
   echo "Tags ";
   echo "<select multiple name='tags[]' size=5>";
-  exec ("ls -F $database/GlobalTags/$globaltag" , $taglist);
+  exec ("ls -F ${storagename}/$database/GlobalTags/$globaltag" , $taglist);
   
   foreach($taglist as $tag) {
     if(strstr($tag,"NoiseRatios")) {
@@ -97,7 +96,7 @@ if ($globaltag!="" && $condtype=="") {
       echo "<option value=$tag>$tag</option>";
     }
   }
-  exec ("ls -F $database/GlobalTags/$globaltag/NoiseRatios" , $NRtaglist);
+  exec ("ls -F ${storagename}/$database/GlobalTags/$globaltag/NoiseRatios" , $NRtaglist);
   foreach($NRtaglist as $tag) {
     if(in_array("NoiseRatios/$tag",$tags)) {
       echo "<option value=NoiseRatios/$tag SELECTED>NoiseRatios/$tag</option>";
@@ -106,7 +105,7 @@ if ($globaltag!="" && $condtype=="") {
       echo "<option value=NoiseRatios/$tag>NoiseRatios/$tag</option>";
     }
   }
-  exec ("ls -F $database/GlobalTags/$globaltag/RunInfo" , $RItaglist);
+  exec ("ls -F ${storagename}/$database/GlobalTags/$globaltag/RunInfo" , $RItaglist);
   foreach($RItaglist as $tag) {
     if(in_array("RunInfo/$tag",$tags)) {
       echo "<option value=RunInfo/$tag SELECTED>RunInfo/$tag</option>";
@@ -123,7 +122,7 @@ if ($globaltag=="" && $condtype!="") {
   
   echo "Tags ";
   echo "<select multiple name='tags[]' size=5>";
-  exec ("ls -F $database/$account/$TAGDIR/$condtype" , $taglist);
+  exec ("ls -F ${storagename}/$database/$account/$TAGDIR/$condtype" , $taglist);
   
   foreach($taglist as $rawtag) {
     $tag=substr($rawtag,0,strlen($rawtag)-1);
@@ -148,7 +147,7 @@ for($tagnum=0;$tagnum<count($tags);$tagnum++) {
   $rcdname[$tagnum]="";
   $accname[$tagnum]="";
   if($globaltag!="" && $condtype=="") {
-    $fh = fopen("${database}/GlobalTags/${globaltag}/$tags[$tagnum]","rb");
+    $fh = fopen("${storagename}/${database}/GlobalTags/${globaltag}/$tags[$tagnum]","rb");
     while(!feof($fh)) {
       $content = fgetss($fh);
 #    echo "$content <br>";
@@ -169,7 +168,7 @@ for($tagnum=0;$tagnum<count($tags);$tagnum++) {
   }
   
 
-  findbestIOV($runnumber,$tagnum,$dirname,"${database}$accname[$tagnum]${TAGDIR}",$wantediovs,$wantedtrend);
+  findbestIOV($runnumber,$tagnum,$dirname,"${storagename}/${database}$accname[$tagnum]${TAGDIR}",$wantediovs,$wantedtrend);
 
  }
 ?>
