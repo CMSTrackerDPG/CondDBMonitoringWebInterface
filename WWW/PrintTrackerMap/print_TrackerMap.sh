@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ "${1}" == "CMSSW_7_0_4" ]; then
+if [ "${1}" == "CMSSW_7_4_0_pre9" ]; then
+   export SCRAM_ARCH=slc6_amd64_gcc491
+elif [ "${1}" == "CMSSW_7_0_4" ]; then
    export SCRAM_ARCH=slc5_amd64_gcc481
 else
    export SCRAM_ARCH=slc5_amd64_gcc462

@@ -1,5 +1,7 @@
 
 <H1>Create your own TrackerMap</H1>
+<font color="red">The web site runs on a SLC6 machine. In case of issues try with an older CMSSW release using the checkbox below 
+and report the problem</font><br>
 Select a file with two columns: each row must contain a detid and a value. <br><br>
 
 <?php
@@ -13,7 +15,7 @@ $max="";
 $logscale="False";
 $withpixel="False";
 $cmsprel="False";
-$release="CMSSW_5_3_14";
+$release="CMSSW_7_4_0_pre9";
 if(isset($_POST["go"])) {
   $inpfile=$_FILES['userfile']['name'];
   $title=$_POST["title"];
@@ -42,9 +44,10 @@ if(isset($_GET["debug"])) $debug=$_GET["debug"];
   <input name="withpixel" value="True" type="radio" <?php if($withpixel=="True") {echo "checked";} ?> />Pixel+Strip,
   <input name="withpixel" value="False" type="radio" <?php if($withpixel=="False") {echo "checked";} ?> />Strip
   <br>
-  Release (please use dev from time to time and report anomalies): 
-  <input name="release" value="CMSSW_5_3_14" type="radio" <?php if($release=="CMSSW_5_3_14") {echo "checked";} ?> />CMSSW_5_3_14 (prod),
-  <input name="release" value="CMSSW_7_0_4" type="radio" <?php if($release=="CMSSW_7_0_4") {echo "checked";} ?> />CMSSW_7_0_4 (dev)
+  Release: 
+  <input name="release" value="CMSSW_5_3_14" type="radio" <?php if($release=="CMSSW_5_3_14") {echo "checked";} ?> />CMSSW_5_3_14 (old),
+  <input name="release" value="CMSSW_7_0_4" type="radio" <?php if($release=="CMSSW_7_0_4") {echo "checked";} ?> />CMSSW_7_0_4 (SLC5),
+  <input name="release" value="CMSSW_7_4_0_pre9" type="radio" <?php if($release=="CMSSW_7_4_0_pre9") {echo "checked";} ?> />CMSSW_7_4_0_pre9 (SLC6)
 <br>
     <input type="submit" name="go" value="Send" />
 </form>
