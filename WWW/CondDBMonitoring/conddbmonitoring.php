@@ -1,6 +1,8 @@
 <H1>SiStrip Conditions DB Monitoring</H1>
-<H3>Nota Bene: because of the migration to conddb v2 another web interface to monitor the conddb v2 content is available 
-<a href="conddbmonitoringV2.php"> here</a> but, for the moment, it is not able to display the GlobalTag related information</H3>
+<font color="#9900ff">Due to the migration to conddb v2 different databases appear in the <em>Database</em> menu below: <em>pro</em> and <em>dev</em> 
+refers to v2 while <em>cms_orcoff_prod</em> and <em>cms_orcoff_prod</em> refers to v1. To look at individual tags the v2 databases are ok since also the past 
+IOVs have been migrated. Instead if you are interested to an old GlobalTag you have to check if it is known by v2 and, if not, you have to check in v1. 
+In that case, unfortunately, the links will point to the v1 monitoring of the corresponding tags and the most recent IOVs will be missing.</font><br><br>
 You can find a description of the software used for this web tool in the following pages:<br>
 <a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/StripTrackerMonitoringCondDb">Twiki page of the web interface software</a><br>
 <a href="https://twiki.cern.ch/twiki/bin/viewauth/CMS/StripTrackerMonitoringCondsDb">Twiki page of DB monitoring software</a><br>
