@@ -1,0 +1,2 @@
+## Web interface to display strip pedestal and noise values
+This web interface can be used to display the strip pedestal and noise values of single modules. The user has to provide the run number (s)he is interested to, the Global Tag or the tag name, choose between Noise and Pedestal (consistently with the provided tag name) or both, if the Global Tag has been provided and whether the noise values have to be normalized with the tickmark height (possible only if the Global Tag is provided). Finally a list of detids has to be provided in the dialog box.
