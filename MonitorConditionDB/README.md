@@ -15,3 +15,7 @@ If the links between a Global Tag and the tags have to be rebuild, it is enough 
 
 Similar instructions can be found in this twiki page:
 https://twiki.cern.ch/twiki/bin/view/CMS/StripTrackerMonitoringCondDb
+
+### `newlymonitored.sh`
+It is the script which is executed at the end of each monitoring job. It collects from the log files the information about the newly monitored IOVs, tags and GlobalTags and publish such a list in the web interface site.
+
