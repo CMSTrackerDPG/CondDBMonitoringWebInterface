@@ -8,6 +8,7 @@ source /afs/cern.ch/cms/cmsset_default.sh
 
 LOCKFILE=/afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cronlog/LockFileTmp
 JOBDONEFILE=/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/LastJobDone
+NEWLYMONITOREDFILE=/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/newlymonitored.txt
 ERRORLOCKFILE="/afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cronlog/ErrorLockFile_`date +%Y%m%d%H%M`"
 
 #touch $LOCKFILE
@@ -84,4 +85,4 @@ rm -f $ERRORLOCKFILE
 echo `tokens`
 afstokenchecker.sh "Execution ended"
 afstokenchecker.sh "Execution ended" > $JOBDONEFILE
-
+/afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/newlymonitored.sh > $NEWLYMONITOREDFILE

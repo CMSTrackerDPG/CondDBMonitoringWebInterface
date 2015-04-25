@@ -52,7 +52,11 @@ if ($_POST['go']) {
 
 exec("cat LastJobDone",$ljdoutput);
 echo "Last update: ".strtok($ljdoutput[0],"[]");
-echo "<BR><BR>";
+echo "<BR>";
+?>
+<font color="blue">The list of the IOVs, tags and GlobalTags monitored in the last week can be found <a href="newlymonitored.txt">here</a><br></font><BR><BR>
+
+<?php
 
 echo "Run Number (optional) <input type='text' value='$runnumber' name='runnumber'><br>";
 
