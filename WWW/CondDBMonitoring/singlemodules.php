@@ -76,7 +76,7 @@ if ($_POST['go']) {
 <form action="singlemodules.php<?php if($debug!=0) {echo '?debug=1';} ?>" method="post" enctype="multipart/form-data">
   Release: 
   <input name="release" value="CMSSW_7_0_4" type="radio" <?php if($release=="CMSSW_7_0_4") {echo "checked";} ?> />CMSSW_7_0_4 (SLC5),
-  <input name="release" value="CMSSW_7_1_0_pre6" type="radio" <?php if($release=="CMSSW_7_1_0_pre6") {echo "checked";} ?> />CMSSW_7_1_0_pre6 (SLC6: conddb V1)
+  <input name="release" value="CMSSW_7_1_15_patch1" type="radio" <?php if($release=="CMSSW_7_1_15_patch1") {echo "checked";} ?> />CMSSW_7_1_15_patch1 (SLC6: conddb V1)
   <input name="release" value="CMSSW_7_4_0_pre9" type="radio" <?php if($release=="CMSSW_7_4_0_pre9") {echo "checked";} ?> />CMSSW_7_4_0_pre9 (SLC6: conddb V2)
 <br>
 <?php
