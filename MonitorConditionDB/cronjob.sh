@@ -63,9 +63,9 @@ MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripApvGain_Realistic de
 MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripNoise_DecoMode dev FrontierPrep
 MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStripBadChannel_PCL dev FrontierPrep
 #
-MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStrip pro FrontierProd
+MonitorDB_NewDirStructure_KeepTagLinks_generic_V2.sh SiStrip pro PromptProd
 Monitor_GlobalTags_V2.sh SiStrip pro
-Monitor_NoiseRatios_V2.sh pro FrontierProd 
+Monitor_NoiseRatios_V2.sh pro PromptProd 
 
 #Not needed anymore, since the 21X tags won't change (they are not in use anymore)
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/CMSSW_2_2_6/src/
