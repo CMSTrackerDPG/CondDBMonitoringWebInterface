@@ -49,17 +49,16 @@ function FindLessStringListKey ($string_input, $key_list, & $list_input)
 	return $string_input;
 }
 
-function ReturnListSubDirs($directory) 
+function ReturnListSubDirs($directory, $pattern) 
 {
-// 	exec ("ls -F ${directory} | grep /", $lista);
-	exec ("ls -F ${directory} | grep CablingInfo", $lista);
+	exec ("ls -F ${directory} | grep ${pattern}", $lista);
 	return $lista;
 	
 }
 
 function GenerateRunNumberList ($directory) 
 {
-	$list_return = ReturnListSubDirs($directory);
+	$list_return = ReturnListSubDirs($directory, "CablingInfo");
 	$list_temp = array();
 	for ($i = 0; $i < count($list_return); $i++)
 	{
@@ -77,5 +76,29 @@ function GenerateRunNumberList ($directory)
 	
 }
 
+function GenerateTagsList ($directory)
+{
+	$list_return = ReturnListSubDirs($directory, "/");
+	
+	for ($i = 0; $i < count($list_return); $i++)
+	{
+		$list_return[$i] = str_replace("/", "", $list_return[$i]);
+	}
+	
+	return $list_return;
+}
+
+function GenerateTags ($directory_tags)
+{
+	$list_directory_tags = GenerateTagsList($directory_tags);
+	
+	$list_tags_iovs = array();
+	for ($i = 0; $i < count($list_directory_tags); $i++)
+	{
+		$list_tags_iovs[$list_directory_tags[$i]] = GenerateRunNumberList($directory_tags . $list_directory_tags[$i] . "/CablingLog/");
+	}
+	
+	return $list_tags_iovs;
+}
 
 ?> 

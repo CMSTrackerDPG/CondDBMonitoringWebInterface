@@ -121,7 +121,7 @@ function selectProcess ($listopt, &$exeok, &$exeok2, &$feature, &$fedid, &$fec, 
 		echo "Modules: <br>";
 		echo " <textarea name='detid' rows = '10' cols = '13'>".$detid."</textarea> <br>";
 //		echo "pink: module not connected <br>";
-		echo "NOTE: If the modules are not connected they will be pink <br>";
+		echo "NOTE: Not connected modules are pink coloured <br>";
 		echo "<br>";
 		if ($detid != "") 
 		{

@@ -45,7 +45,7 @@ def getLatestCabling():
 def filenameF(name):
     suffix='CablingInfo_Run'
     filenameX=suffix+name+'.txt'
-    location ='/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/'
+    location = '/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/'
     #location = '/afs/cern.ch/user/j/jmejiagu/www/cablingfiles-bak/'
     #complete_route = location + filenameX
     #os.system (('cp %s .') % (complete_route))
@@ -65,7 +65,7 @@ def filenameF(name):
 def semilinkF(namelink):
 #        pattern = re.split('/', namelink)
 #        filenameX = pattern[-1]
-        location ='/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/'
+        location ='/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/'
         #location = '/afs/cern.ch/user/j/jmejiagu/www/cablingfiles-bak/'
         #complete_route = location + filenameX
         #os.system (('cp %s .') % (complete_route))
@@ -191,7 +191,7 @@ def DictionaryCab(filenameC,options):
         [archi2.write(p+"\n") for p in DictionaryCab.CablingInfoDict]
         archi1.close()
         archi2.close()
-        os.system(('print_TrackerMap %s "TrackerMap" %s 2400 False False 999 -999')%(options.aldet1,options.aldet3))
+        os.system(('print_TrackerMap %s "TrackerMap" %s 2400 False False 999 -999 True')%(options.aldet1,options.aldet3))
         print "a file named %s and a tracker map %s named  have been created" % (options.aldet2,options.aldet3)
     
    
@@ -209,7 +209,7 @@ def DictionaryCab(filenameC,options):
                     cbp=cb[i][j]
                     if  (cbp["DcuId"]) not in dculist:
                         dculist.append(cbp["DcuId"])
-                        txtmod.write("\n"+"DcuId"+cbp["DcuId"]+"/DetId"+cbp["DetId"]+"/nPairs"+cbp["nPairs"]+"/nStrips"+cbp["nStrips"]+"/FecCrate"+cbp["FedCrate"]+"/FecSlot"+cbp["FecSlot"]+"/FecRing"+cbp["FecRing"]+"/CcuAddr"+cbp["CcuAddr"]+"/CcuCh"+cbp["CcuChan"])
+                        txtmod.write("\n"+"DcuId"+cbp["DcuId"]+"/DetId"+cbp["DetId"]+"/nPairs"+cbp["nPairs"]+"/nStrips"+cbp["nStrips"]+"/FecCrate"+cbp["FecCrate"]+"/FecSlot"+cbp["FecSlot"]+"/FecRing"+cbp["FecRing"]+"/CcuAddr"+cbp["CcuAddr"]+"/CcuCh"+cbp["CcuChan"])
                 
                     txtmod.write("\n"+"/FedCrate"+cbp["FedCrate"]+"/FedSlot"+cbp["FedSlot"]+"/FedId"+cbp["FedId"]+"/FeUnit"+cbp["FeUnit"]+"/FeChan"+cbp["FeChan"]+"/FedCh"+cbp["FedCh"]+"/LldChan"+cbp["LldChan"]+"/APV0-"+cbp["APV0"]+"/APV1-"+cbp["APV1"])
             
@@ -237,7 +237,7 @@ def DictionaryCab(filenameC,options):
                     archim.write(p+" "+" 255 153 255"+"\n")
         archim.close()
         
-        os.system(('print_TrackerMap %s  "TrackerMap" %s 2400 False False 999 -999')%(options.det4,options.det5))
+        os.system(('print_TrackerMap %s  "TrackerMap" %s 2400 False False 999 -999 True')%(options.det4,options.det5))
         print "A trackermap named %s has been created" %options.det5    
         #archim.close 
 
@@ -465,7 +465,7 @@ def DictionaryCab(filenameC,options):
                     lisf1n.append(x)
                     txtc1.write(x+"\n")
             txtc1.close()
-            os.system(('print_TrackerMap %s  "TrackerMap" %s 2400 False False 999 -999')%(options.fe3,options.fe4))
+            os.system(('print_TrackerMap %s  "TrackerMap" %s 2400 False False 999 -999 True')%(options.fe3,options.fe4))
           
 
         if options.lisfetrc1=="FecCrate":
@@ -529,7 +529,7 @@ def DictionaryCab(filenameC,options):
                     dculis2n.append(ad)
                     txtc1.write(ad+"\n")
             txtc1.close()
-            os.system(('print_TrackerMap %s  "TrackerMap" %s 2400 False False 999 -999')%(options.fe3,options.fe4))
+            os.system(('print_TrackerMap %s  "TrackerMap" %s 2400 False False 999 -999 True')%(options.fe3,options.fe4))
 
                 
                       
@@ -571,7 +571,7 @@ def DictionaryCab(filenameC,options):
         color_list = ["green","blue","red","yellow","magenta","light blue","dark green","purple","grey","orange"]
         for i,j in zip (listl,color_list):
             variable+='%s=%s  ' % (i,j)
-        os.system('print_TrackerMap %s "Trackermap" %s  2400 False False 999 -999' % (options.fe3,options.fe4))
+        os.system('print_TrackerMap %s "Trackermap" %s  2400 False False 999 -999 True' % (options.fe3,options.fe4))
       
         print "A file named %s and a trackermap named %s with the info have been created"%(options.fe2,options.fe4)
         """
@@ -717,7 +717,7 @@ def HVInfoDictF(filenameC,filename, options):
         variable =""
         for i in lihv2:
             variable+='%s  ' % (i)
-        os.system('print_TrackerMap %s Trackermap %s  2400 False False 999 -999'%(options.ps1,options.ps3))
+        os.system('print_TrackerMap %s "Trackermap" %s 2400 False False 999 -999 True'%(options.ps1,options.ps3))
         print "A file named %s with the modules in common for the hv info introduced has been created and a trackermap named %s have been created" %(options.ps2,options.ps3)
       
 ##########HERE WE INTRODUCE THE OPTIONS FOR THE INFO#######################33
@@ -889,7 +889,7 @@ if __name__ == "__main__":
         
         for i,j in zip (lials,color_list):
             variable+='%s=%s  ' % (i,j)
-        os.system('print_TrackerMap %s "Tracker map" %s 2400 False False 999 -999' % (options.al1,options.al3))
+        os.system('print_TrackerMap %s "Tracker map" %s 2400 False False 999 -999 True' % (options.al1,options.al3))
         print "A file and a trackermap named %s and %s have been created"%(options.al2,options.al3)
   
     #the alias of a (set of) module(s)     
@@ -1100,7 +1100,7 @@ if __name__ == "__main__":
                         cbm=DictionaryCab.CablingInfoDict[str(key)][m]
                         if (str(key)) not in lset:
                             lset.append(str(key))
-                            txt.write("\n\n"+cbm["DetId"]+"    DcuId"+cbm["DcuId"]+"/nPairs"+cbm["nPairs"]+"/nStrips"+cbm["nStrips"]+"/FecCrate"+cbm["FedCrate"]+"/FecSlot"+cbm["FecSlot"]+"/FecRing"+cbm["FecRing"]+"/CcuAddr"+cbm["CcuAddr"]+"/CcuCh"+cbm["CcuChan"])
+                            txt.write("\n\n"+cbm["DetId"]+"    DcuId"+cbm["DcuId"]+"/nPairs"+cbm["nPairs"]+"/nStrips"+cbm["nStrips"]+"/FecCrate"+cbm["FecCrate"]+"/FecSlot"+cbm["FecSlot"]+"/FecRing"+cbm["FecRing"]+"/CcuAddr"+cbm["CcuAddr"]+"/CcuCh"+cbm["CcuChan"])
            
                         ins="\n"+"/FedCrate"+cbm["FedCrate"]+"/FedSlot"+cbm["FedSlot"]+"/FedId"+cbm["FedId"]+"/FeUnit"+cbm["FeUnit"]+"/FeChan"+cbm["FeChan"]+"/FedCh"+cbm["FedCh"]+"/LldChan"+cbm["LldChan"]+"/APV0-"+cbm["APV0"]+"/APV1-"+cbm["APV1"]
                         if (ins not in lset2):
@@ -1294,7 +1294,7 @@ if __name__ == "__main__":
                         cbi=cb[ikey][m]
                         if (str(ikey)) not in listcab:
                             listcab.append(str(ikey))
-                            txthvcab.write("\n\n"+cbi["DetId"]+"    DcuId"+cbi["DcuId"]+"/nPairs"+cbi["nPairs"]+"/nStrips"+cbi["nStrips"]+"/FecCrate"+cbi["FedCrate"]+"/FecSlot"+cbi["FecSlot"]+"/FecRing"+cbi["FecRing"]+"/CcuAddr"+cbi["CcuAddr"]+"/CcuCh"+cbi["CcuChan"])
+                            txthvcab.write("\n\n"+cbi["DetId"]+"    DcuId"+cbi["DcuId"]+"/nPairs"+cbi["nPairs"]+"/nStrips"+cbi["nStrips"]+"/FecCrate"+cbi["FecCrate"]+"/FecSlot"+cbi["FecSlot"]+"/FecRing"+cbi["FecRing"]+"/CcuAddr"+cbi["CcuAddr"]+"/CcuCh"+cbi["CcuChan"])
            
                         ins="\n"+"/FedCrate"+cbi["FedCrate"]+"/FedSlot"+cbi["FedSlot"]+"/FedId"+cbi["FedId"]+"/FeUnit"+cbi["FeUnit"]+"/FeChan"+cbi["FeChan"]+"/FedCh"+cbi["FedCh"]+"/LldChan"+cbi["LldChan"]+"/APV0-"+cbi["APV0"]+"/APV1-"+cbi["APV1"]
 

@@ -1,5 +1,4 @@
-
-<H1>GET Cabling, PowerGroupName, PSUname info and  also an TrackerMap</H1>
+<H1>GET Cabling, PowerGroupName, PSUname info and a TrackerMap</H1>
 
 
 <?php
@@ -8,7 +7,7 @@
 	include 'cablingweb_utils.php';
 	
 	$inpfile = "";
-	$plotwidth = "600";
+	$plotwidth = "1200";
 	
 	$options_set = array_fill (0, 5, "-");
 	$power_set = array_fill (0, 10, $options_set);
@@ -33,26 +32,10 @@
 	);
 
 	$tagSel = ""; 
-
-	$cabfil_craf09 = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_CRAFT09_ForTrackerSim/CablingLog/");
-	$cabfil_craf_31x = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_CRAFT_31X_v1_offline/");
-	$cabfil_craf_31x[] = "1";
-	$cabfil_gr09_v1 = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR09_31X_v1/CablingLog/");
-	$cabfil_gr09_hlt = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR09_31X_v1_hlt/CablingLog/");
-	$cabfil_gr09_offline = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR09_31X_v1_offline/CablingLog/");
-	$cabfil_gr10_hlt = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/");
-	$cabfil_ideal = GenerateRunNumberList("/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_Ideal_31X_v2/CablingLog/");
-
-	$list_tags_iovs = array 
-	(
-	"SiStripFedCabling_CRAFT09_ForTrackerSim" => $cabfil_craf09,
-	"SiStripFedCabling_CRAFT_31X_v1_offline" => $cabfil_craf_31x,
-	"SiStripFedCabling_GR09_31X_v1" => $cabfil_gr09_v1,
-	"SiStripFedCabling_GR09_31X_v1_hlt" => $cabfil_gr09_hlt,
-	"SiStripFedCabling_GR09_31X_v1_offline" => $cabfil_gr09_offline,
-	"SiStripFedCabling_GR10_v1_hlt" => $cabfil_gr10_hlt,
-	"SiStripFedCabling_Ideal_31X_v2" => $cabfil_ideal
-	); 
+	
+	$directory_tags = "/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
+	
+	$list_tags_iovs = GenerateTags($directory_tags);
 	
 	$hv_option_button = ""; 
 	
@@ -141,7 +124,6 @@
 		<input type="hidden" name="outHvofAlias" value="/tmp/ourHvofAlias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 		<input type="hidden" name="outHvmodcom" value="/tmp/ourHvmodcom_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 		<input type="hidden" name="outHvAliasinfo" value="/tmp/ourHvAliasinfo_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outtxtfile" value="/tmp/ourtxtfile_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 		<input type="hidden" name="outCabofhv" value="/tmp/ourCabofhv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 		<input type="hidden" name="outCabmodalias" value="/tmp/ourCabmodalias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 
@@ -317,7 +299,6 @@
 		$outAliastohv = $_POST["outAliastohv"];
 		$outHvmodcom = $_POST["outHvmodcom"];
 		$outHvAliasinfo = $_POST["outHvAliasinfo"];
-		$outtxtfile = $_POST["outtxtfile"];
 		$outCabofhv = $_POST["outCabofhv"];
 		$outCabmodalias = $_POST["outCabmodalias"];
 		$outModofCab = $_POST["outModofCab"];
@@ -557,9 +538,9 @@
 //					system($command);
 					exec($command);
 
-//					exec ("rm -f temp/*");
+					exec ("rm -f temp/*");
 // 					exec ("mkdir temp");
-//					exec ("mv DetIdCab.txt temp/");
+					exec ("mv DetIdCab.txt temp/");
 					exec ("mv ModulestoFeds.txt $outinfomodules");
 					exec ("mv Modulescommonhv.png $grafModulescommonhv");
 
@@ -567,10 +548,9 @@
 					exec ("mv Modulescommonhv.png $grafModulescommonhv");
 					exec ("mv HvAliasinfo.txt $outHvAliasinfo");
 
-//					exec ("mv file.txt $outtxtfile");
-//					exec ("mv file.txt temp/");
-//					exec ("mv $inpfile temp/");
-//					exec ("mv CablingInfo* temp/");
+					exec ("mv file.txt temp/");
+					exec ("mv $inpfile temp/");
+					exec ("mv CablingInfo* temp/");
 			
 					echo "</a><br><br>";
 
