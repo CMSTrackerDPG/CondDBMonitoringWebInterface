@@ -75,6 +75,9 @@ Monitor_NoiseRatios_V2.sh pro PromptProd
 #cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB
 #./MonitorDB_NewDirStructure.sh cms_orcoff_prod CMS_COND_21X_STRIP CMS_COND_21X_GLOBALTAG PromptProd
 
+#Monitor DCS O2O
+/afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/monitorDCS.sh
+
 rm -f *.txt
 rm -f *.html
 cd ..
