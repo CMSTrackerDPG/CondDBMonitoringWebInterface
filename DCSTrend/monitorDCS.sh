@@ -11,3 +11,4 @@ eval `scramv1 ru -sh`
 cd $WORK_DIR
 cmsRun dcs_trend_monitor_cfg.py
 mv *.png *.csv $OUTPUT_DIR
+python /afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/autoInspector.py $OUTPUT_DIR
