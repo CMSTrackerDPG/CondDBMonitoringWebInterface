@@ -6,6 +6,8 @@ elif [ "${1}" == "CMSSW_7_1_15_patch1" ]; then
    export SCRAM_ARCH=slc6_amd64_gcc481
 elif [ "${1}" == "CMSSW_7_0_4" ]; then
    export SCRAM_ARCH=slc5_amd64_gcc481
+elif [ "${1}" == "CMSSW_8_0_10" ]; then
+   export SCRAM_ARCH=slc6_amd64_gcc530
 else
    export SCRAM_ARCH=slc5_amd64_gcc481
 fi
