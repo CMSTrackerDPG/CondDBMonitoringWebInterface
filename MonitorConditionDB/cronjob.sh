@@ -1,10 +1,14 @@
 #!/bin/bash
 
+source /afs/cern.ch/cms/cmsset_default.sh
+
+#DCS O2O Monitoring
+#run this regardless of the lock file
+/afs/cern.ch/cms/tracker/sistrcalib/DCSTrend/monitorDCS.sh
+
 if [ -f /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cronlog/LockFileTmp ]; then
     exit
 fi
-
-source /afs/cern.ch/cms/cmsset_default.sh
 
 LOCKFILE=/afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/cronlog/LockFileTmp
 JOBDONEFILE=/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/LastJobDone
