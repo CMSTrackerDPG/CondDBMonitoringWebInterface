@@ -33,7 +33,9 @@
 
 	$tagSel = ""; 
 	
-	$directory_tags = "/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
+	#### TO BE CHANGED
+	$directory_tags = "/data/users/event_display/CondDBMonitoringWebInterface/CondDBMonitoringWebInterface/tmp/dev/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
+	#### TO BE CHANGED
 	
 	$list_tags_iovs = GenerateTags($directory_tags);
 	
@@ -406,7 +408,8 @@
 						echo "<b>  ". Fec ."" . $fec_array[$i] . " = " . $colors[$i] . " </b> <br>";
 					}
 				}
-				if ($detid != "" && isset($_REQUEST['samecolors']))
+				if ($detid != "" && isset($_REQUEST['samecolors']))			if ($listopt == "") // Si se ha seleccionado una opción se muestra como un menú desplegable
+
 //				if ($detid != "")
 				{
 					for ($i = 0; $i < count ($detid_array); $i++)

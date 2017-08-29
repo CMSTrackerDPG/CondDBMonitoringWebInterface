@@ -8,16 +8,23 @@ elif [ "${1}" == "CMSSW_7_0_4" ]; then
    export SCRAM_ARCH=slc5_amd64_gcc481
 elif [ "${1}" == "CMSSW_8_0_10" ]; then
    export SCRAM_ARCH=slc6_amd64_gcc530
+elif [ "${1}" == "CMSSW_9_3_0_pre4" ]; then
+   export SCRAM_ARCH=slc6_amd64_gcc700
 else
    export SCRAM_ARCH=slc5_amd64_gcc481
 fi
 echo $SCRAM_ARCH
 
-source /afs/cern.ch/cms/cmsset_default.sh
+CMS_PATH=/cvmfs/cms.cern.ch/
+
+# source /afs/cern.ch/cms/cmsset_default.sh
+source $CMS_PATH/cmsset_default.sh
+
 echo $SCRAM_ARCH
 echo $HOSTNAME
 
-cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/${1}/src
+# cd /afs/cern.ch/cms/tracker/sistrcalib/MonitorConditionDB/${1}/src
+cd $CMS_PATH/$SCRAM_ARCH/cms/cmssw/${1}/src
 eval `scramv1 runtime -sh`
 echo $SCRAM_ARCH
 echo $LD_LIBRARY_PATH

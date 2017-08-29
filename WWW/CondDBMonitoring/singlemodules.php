@@ -80,6 +80,7 @@ if ($_POST['go']) {
   <input name="release" value="CMSSW_7_1_15_patch1" type="radio" <?php if($release=="CMSSW_7_1_15_patch1") {echo "checked";} ?> />CMSSW_7_1_15_patch1 (SLC6: conddb V1)
   <input name="release" value="CMSSW_7_5_0_pre4" type="radio" <?php if($release=="CMSSW_7_5_0_pre4") {echo "checked";} ?> />CMSSW_7_5_0_pre4 (SLC6: conddb V2)
   <input name="release" value="CMSSW_8_0_10" type="radio" <?php if($release=="CMSSW_8_0_10") {echo "checked";} ?> />CMSSW_8_0_10 (SLC6: conddb V2)
+  <input name="release" value="CMSSW_9_3_0_pre4" type="radio" <?php if($release=="CMSSW_9_3_0_pre4") {echo "checked";} ?> />CMSSW_9_3_0_pre4 (SLC6: conddb V2)
 <br>
 <?php
 echo "Run Number <input type='text' value='$runnumber' name='runnumber'><br>";
