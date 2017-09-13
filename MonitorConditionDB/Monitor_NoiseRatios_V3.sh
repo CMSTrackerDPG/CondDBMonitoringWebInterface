@@ -78,7 +78,7 @@ declare -a checkedtags;
 # Access of all Global Tags contained in the given DB account
 afstokenchecker.sh "Preparing list of Global Tags"
 rm -rf $GLOBALTAGCOLLECTION
-conddb --db $DB --nocolors listGTs | grep " GT " | awk '{print $1}' | tail -10 > $GLOBALTAGCOLLECTION
+conddb --db $DB --nocolors listGTs | grep " GT " | awk '{print $1}' > $GLOBALTAGCOLLECTION
 
 TAGSUBDIR=SiStripNoise
 
@@ -210,7 +210,7 @@ EOF
     checkedtags[${#checkedtags[*]}]=$tag;
 
     # Get the list of IoVs for the given DB-Tag
-    conddb --db $DB --nocolors list -L 5000 $NOISETAG | awk '{if(match($1,"[a-z]")!=0 || match($1,"-")!=0) {} else {print $1}}' | tail -10 > list_Iov.txt
+    conddb --db $DB --nocolors list -L 5000 $NOISETAG | awk '{if(match($1,"[a-z]")!=0 || match($1,"-")!=0) {} else {print $1}}' > list_Iov.txt
 
     # Access DB for the given DB-Tag and dump histograms in .png if not existing yet
     afstokenchecker.sh "Now the values of $tag are retrieved from the DB..."

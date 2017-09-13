@@ -34,7 +34,7 @@
 	$tagSel = ""; 
 	
 	#### TO BE CHANGED
-	$directory_tags = "/data/users/event_display/CondDBMonitoringWebInterface/CondDBMonitoringWebInterface/tmp/dev/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
+	$directory_tags = "/data/users/event_display/CondDBMonitoringWebInterface/CondDBMonitoringWebInterface/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
 	#### TO BE CHANGED
 	
 	$list_tags_iovs = GenerateTags($directory_tags);
@@ -536,10 +536,12 @@
 // 						echo "cualquiercosa";
 					}
 					
-
-//					echo $command . "<br>";
+					// SHOW BUILT COMMAND
+					echo "Command sent:";
+					echo "<br>" . $command . "<br>";
 //					system($command);
-					exec($command);
+					$res = exec($command);
+					echo $res . "<br>";
 
 					exec ("rm -f temp/*");
 // 					exec ("mkdir temp");

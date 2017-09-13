@@ -66,10 +66,9 @@ bash $PATHTOSCRIPT/MonitorDB_NewDirStructure_KeepTagLinks_generic_V3.sh SiStripA
 bash $PATHTOSCRIPT/MonitorDB_NewDirStructure_KeepTagLinks_generic_V3.sh SiStripNoise_DecoMode dev FrontierPrep
 bash $PATHTOSCRIPT/MonitorDB_NewDirStructure_KeepTagLinks_generic_V3.sh SiStripBadChannel_PCL dev FrontierPrep
 
-# bash $PATHTOSCRIPT/MonitorDB_NewDirStructure_KeepTagLinks_generic_V3.sh SiStrip pro PromptProd
-# bash $PATHTOSCRIPT/Monitor_GlobalTags_V3.sh SiStrip pro
+bash $PATHTOSCRIPT/MonitorDB_NewDirStructure_KeepTagLinks_generic_V3.sh SiStrip pro PromptProd
+bash $PATHTOSCRIPT/Monitor_GlobalTags_V3.sh SiStrip pro
 
-# USED LIMITER TO ONLY 10 LAST...
 bash $PATHTOSCRIPT/Monitor_NoiseRatios_V3.sh pro PromptProd 
 
 
