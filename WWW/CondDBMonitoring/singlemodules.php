@@ -24,11 +24,12 @@ $wantedsimnorm="False";
 $modulelist="";
 $modulefile="";
 $time=0;
-$release="CMSSW_7_5_0_pre4";
+$release="CMSSW_9_0_0";
 if ($_POST['go']) {
   $time=time();
   $release=$_POST["release"];
   if(strstr($release,"CMSSW_7_5_0_pre4")) $connstring="frontier://PromptProd/CMS_CONDITIONS";
+  if(strstr($release,"CMSSW_9_0_0")) $connstring="frontier://PromptProd/CMS_CONDITIONS";
   $runnumber = $_POST['runnumber'];
   $globaltag = $_POST['globaltag'];
   $tag = $_POST['tag'];
@@ -64,9 +65,16 @@ if ($_POST['go']) {
   $command="cat ".$modulefile;
   exec($command);
   $globaltagstring=$globaltag."::All";
+
+  if(strstr($release,"CMSSW_10_0_4"))       $globaltagstring=$globaltag;
+  if(strstr($release,"CMSSW_9_0_0"))        $globaltagstring=$globaltag;
+  if(strstr($release,"CMSSW_8_0_10"))       $globaltagstring=$globaltag;
   if(strstr($release,"CMSSW_7_5_0_pre4"))   $globaltagstring=$globaltag;
-  if(strstr($release,"CMSSW_8_0_10"))   $globaltagstring=$globaltag;
+
+  // echo $globaltagstring."<br><br>";
+  
   $command = "./singleModule.sh $release $runnumber $modulefile $condtype '$globaltagstring' '$connstring' '$tag' '$record' $wantednorm $wantedsimnorm '_$time'";
+
   if($debug==1) { echo $command; echo "<br>";  system($command); echo "<BR>"; }
   else {    exec($command);  }
 #system("ls -ltr /tmp");
@@ -76,11 +84,14 @@ if ($_POST['go']) {
 
 <form action="singlemodules.php<?php if($debug!=0) {echo '?debug=1';} ?>" method="post" enctype="multipart/form-data">
   Release: 
-  <input name="release" value="CMSSW_7_0_4" type="radio" <?php if($release=="CMSSW_7_0_4") {echo "checked";} ?> />CMSSW_7_0_4 (SLC5),
-  <input name="release" value="CMSSW_7_1_15_patch1" type="radio" <?php if($release=="CMSSW_7_1_15_patch1") {echo "checked";} ?> />CMSSW_7_1_15_patch1 (SLC6: conddb V1)
-  <input name="release" value="CMSSW_7_5_0_pre4" type="radio" <?php if($release=="CMSSW_7_5_0_pre4") {echo "checked";} ?> />CMSSW_7_5_0_pre4 (SLC6: conddb V2)
+  <input name="release" value="CMSSW_10_0_4" type="radio" <?php if($release=="CMSSW_10_0_4") {echo "checked";} ?> />CMSSW_10_0_4
+
+  <input name="release" value="CMSSW_9_0_0" type="radio" <?php if($release=="CMSSW_9_0_0") {echo "checked";} ?> />CMSSW_9_0_0 (PLEASE USE THIS FOR 2017 RUNS) 
+
   <input name="release" value="CMSSW_8_0_10" type="radio" <?php if($release=="CMSSW_8_0_10") {echo "checked";} ?> />CMSSW_8_0_10 (SLC6: conddb V2)
-  <input name="release" value="CMSSW_9_3_0_pre4" type="radio" <?php if($release=="CMSSW_9_3_0_pre4") {echo "checked";} ?> />CMSSW_9_3_0_pre4 (SLC6: conddb V2)
+
+  <input name="release" value="CMSSW_7_5_0_pre4" type="radio" <?php if($release=="CMSSW_7_5_0_pre4") {echo "checked";} ?> />CMSSW_7_5_0_pre4 (SLC6: conddb V2)
+  
 <br>
 <?php
 echo "Run Number <input type='text' value='$runnumber' name='runnumber'><br>";
