@@ -23,7 +23,6 @@ def cb(option, opt_str, value, parser):
     setattr(parser.values, option.dest, args)
 
 def getLatestCabling():
-   "!!!!!! URL !!!!!!"
    cabfile = ""
    url = "https://test-stripdbmonitor.web.cern.ch/"
    path = "test-stripdbmonitor/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/"
@@ -46,9 +45,7 @@ def getLatestCabling():
 def filenameF(name):
     suffix='CablingInfo_Run'
     filenameX=suffix+name+'.txt'
-
-    serverLocation = "/data/users/event_display/CondDBMonitoringWebInterface/CondDBMonitoringWebInterface"
-    location = serverLocation + '/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/'
+    location = '/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/'
     #location = '/afs/cern.ch/user/j/jmejiagu/www/cablingfiles-bak/'
     #complete_route = location + filenameX
     #os.system (('cp %s .') % (complete_route))
@@ -68,8 +65,7 @@ def filenameF(name):
 def semilinkF(namelink):
 #        pattern = re.split('/', namelink)
 #        filenameX = pattern[-1]
-        serverLocation = "/data/users/event_display/CondDBMonitoringWebInterface/CondDBMonitoringWebInterface"
-        location = serverLocation + '/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/'
+        location ='/afs/cern.ch/cms/tracker/sistrcalib/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/'
         #location = '/afs/cern.ch/user/j/jmejiagu/www/cablingfiles-bak/'
         #complete_route = location + filenameX
         #os.system (('cp %s .') % (complete_route))
@@ -793,7 +789,6 @@ if __name__ == "__main__":
 
 
     if (options.filenameC is None and options.fileurl is None):
-        "!!!!!! URL !!!!!!"
         url = "https://test-stripdbmonitor.web.cern.ch/"
         path = "test-stripdbmonitor/CondDBMonitoring/cms_orcoff_prod/CMS_COND_31X_STRIP/DBTagCollection/SiStripFedCabling/SiStripFedCabling_GR10_v1_hlt/CablingLog/"
         cablingfile = getLatestCabling()
@@ -802,15 +797,14 @@ if __name__ == "__main__":
         ourdictionary=DictionaryCab(cablingfile,options)
         #options.filenameC = cablingfile
 
-        StripDetIDAliasDict=pickle.load(open(os.getenv("CMSSW_RELEASE_BASE")+"/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
-
+#FF        StripDetIDAliasDict=pickle.load(open(os.getenv("CMSSW_RELEASE_BASE")+"/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
+        StripDetIDAliasDict=pickle.load(open("/data/users/CMSSWWEB/CMSSW_10_0_4/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
         MyAlias=AliasFun(cablingfile,options,StripDetIDAliasDict)
 
         MyCabList=DetIdCabL(cablingfile)
 
-        # fileHV1='/afs/cern.ch/cms/slc5_amd64_gcc481/cms/cmssw/CMSSW_7_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat' 
-        fileHV1=os.getenv("CMSSW_RELEASE_BASE") + '/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat' 
-
+        fileHV1='/data/users/CMSSWWEB/CMSSW_10_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat'
+#FF        fileHV1='/afs/cern.ch/cms/slc6_amd64_gcc481/cms/cmssw/CMSSW_7_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat' 
         Myfilepsu=filepsu()
 
         MyCabHV=CabHVFiles(MyCabList,fileHV1,Myfilepsu)
@@ -824,8 +818,8 @@ if __name__ == "__main__":
         MyFilename=filenameF(options.filenameC)
     
     ## for the alias
-        StripDetIDAliasDict=pickle.load(open(os.getenv("CMSSW_RELEASE_BASE")+"/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
-
+#FF        StripDetIDAliasDict=pickle.load(open(os.getenv("CMSSW_RELEASE_BASE")+"/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
+        StripDetIDAliasDict=pickle.load(open("/data/users/CMSSWWEB/CMSSW_10_0_4/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
         MyAlias=AliasFun(MyFilename,options,StripDetIDAliasDict)
 
   
@@ -833,7 +827,8 @@ if __name__ == "__main__":
         ourdictionary=DictionaryCab(MyFilename,options)
      ##for the HV
         MyCabList=DetIdCabL(MyFilename)
-        fileHV1=os.getenv("CMSSW_RELEASE_BASE") + '/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat' 
+        fileHV1='/data/users/CMSSWWEB/CMSSW_10_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat'
+#FF        fileHV1='/afs/cern.ch/cms/slc6_amd64_gcc481/cms/cmssw/CMSSW_7_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat' 
         Myfilepsu=filepsu()
         MyCabHV=CabHVFiles(MyCabList,fileHV1,Myfilepsu)
         input5='/tmp/'+filepsu.fname
@@ -845,7 +840,8 @@ if __name__ == "__main__":
         Mylink=semilinkF(options.fileurl)
             
     ## for the alias
-        StripDetIDAliasDict=pickle.load(open(os.getenv("CMSSW_RELEASE_BASE")+"/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
+#FF        StripDetIDAliasDict=pickle.load(open(os.getenv("CMSSW_RELEASE_BASE")+"/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
+        StripDetIDAliasDict=pickle.load(open("/data/users/CMSSWWEB/CMSSW_10_0_4/src/CalibTracker/SiStripDCS/data/StripDetIDAlias.pkl"))
 
         MyAlias=AliasFun(Mylink,options,StripDetIDAliasDict)
 
@@ -854,8 +850,8 @@ if __name__ == "__main__":
         ourdictionary=DictionaryCab(Mylink,options)
      ##for the HV
         MyCabList=DetIdCabL(Mylink)
-        
-        fileHV1=os.getenv("CMSSW_RELEASE_BASE") + '/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat'
+        fileHV1='/data/users/CMSSWWEB/CMSSW_10_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat'     
+#FF        fileHV1='/afs/cern.ch/cms/slc6_amd64_gcc481/cms/cmssw/CMSSW_7_0_4/src/CalibTracker/SiStripDCS/data/StripPSUDetIDMap_BeforeJan132010.dat'
         Myfilepsu=filepsu()
         MyCabHV=CabHVFiles(MyCabList,fileHV1,Myfilepsu)
         input5='/tmp/'+filepsu.fname
