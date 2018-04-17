@@ -10,7 +10,7 @@ More details can be found in the specific README files in the subdirectories.
 Happy Reading and please, maintain this for us!
 
 
-# Quick guide for debugging
+# Quick guide to debug the Single Module Noise and Pedestals web interface
 in the case the script doesn't return any plot (and you are sure to have input the right parameters: CMSSW release, GT and detId) most probably the CMSSW release is to be update to be able to read a different GT.
 
 To do so follow the steps below:
