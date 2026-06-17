@@ -2,6 +2,8 @@ import FWCore.ParameterSet.Config as cms
 import os
 
 process = cms.Process("plot")
+process.load('Configuration.Geometry.GeometryExtended2021Reco_cff')
+
 
 process.MessageLogger = cms.Service( "MessageLogger",
                                      debugModules = cms.untracked.vstring( "*" ),
@@ -17,7 +19,7 @@ process.source = cms.Source("EmptySource",
     firstRun = cms.untracked.uint32(1)
 )
 
-process.SiStripDetInfoFileReader = cms.Service("SiStripDetInfoFileReader")
+#process.SiStripDetInfoFileReader = cms.Service("SiStripDetInfoFileReader")
 
 process.load("CondCore.CondDB.CondDB_cfi")
 process.tkVoltageTrend = cms.EDAnalyzer( "SiStripDetVOffTrendPlotter",
@@ -25,7 +27,7 @@ process.tkVoltageTrend = cms.EDAnalyzer( "SiStripDetVOffTrendPlotter",
                                      conditionDatabase = cms.string("frontier://FrontierProd/CMS_CONDITIONS"),
 #                                     conditionDatabase = cms.string("oracle://cms_orcoff_prep/CMS_CONDITIONS"),
                                      # Add the tags for plotting
-                                     plotTags = cms.vstring("SiStripDetVOff_1hourDelay_v1_Validation", "SiStripDetVOff_13hourDelay_v1_Validation", "SiStripDetVOff_v7_prompt"),
+                                     plotTags = cms.vstring("SiStripDetVOff_1hourDelay_v1_Validation", "SiStripDetVOff_13hourDelay_v1_Validation", "SiStripDetVOff_v7_prompt", "SiStripDetVOff_v6_prompt"),
                                      # Set the time interval for the plots, e.g., put 48 if you want to plot the trend in the last 48 hours.
                                      # Set timeInterval to non-positive values if you want to put start and end time by hand.
                                      timeInterval = cms.int32(72),

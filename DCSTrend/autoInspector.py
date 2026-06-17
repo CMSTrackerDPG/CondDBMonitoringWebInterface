@@ -36,7 +36,7 @@ def checkFile(filename):
     tag1hr = {}
     tag13hr = {}
     tag25hr = {}
-    with open(filename, 'rb') as f:
+    with open(filename, 'r') as f:
         reader = csv.reader(f)
         firstrow = True
         for row in reader:
@@ -50,7 +50,7 @@ def checkFile(filename):
     d2 = diff(tag13hr, tag25hr)
     if d1 or d2:
         msg = '\n'.join([filename,str(d1),str(d2)])
-        print msg
+        print(msg)
         sendMail('[Warning] DCS O2O Discrepancy', msg, sendlogto, mailfrom)
     
 if __name__ == '__main__':

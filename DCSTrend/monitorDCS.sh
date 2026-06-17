@@ -1,19 +1,38 @@
 #!/bin/sh
-#
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+##Only update the CMSSW release
+CMSSW_REL=CMSSW_14_0_14
 
-parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-echo $parent_path
-cd $parent_path
+PARENT_PATH=/data/users/event_display/dpgtkdqm/cronjobs/DCSTrend
+WORK_DIR=$PARENT_PATH/DCSTrend/run
+CMSSW_DIR=$PARENT_PATH/$CMSSW_REL/src/
+echo "Work dir path:"$WORK_DIR
 
-WORK_DIR=$parent_path/run
-CMSSW_DIR=/cvmfs/cms.cern.ch/slc6_amd64_gcc700/cms/cmssw/CMSSW_9_3_0_pre4/src
-OUTPUT_DIR=$parent_path/../WWW/DCSTrend/last72hr
+export SSO_CLIENT_ID=tkhdqm
+export SSO_CLIENT_SECRET=hidden
+
+EOS_OUTPUT_DIR=/eos/user/d/dpgtkdqm/www/DCSTrend/last72hr/
+
+#kerberos authentication
+kdestroy
+kinit -k -t /home/dpgtkdqm/dpgtkdqm.keytab dpgtkdqm
+klist
+eosfusebind
+aklog CERN.CH
 
 cd $CMSSW_DIR
 eval `scramv1 ru -sh`
 
 cd $WORK_DIR
-# echo $WORK_DIR
+echo "Inside work dir:"$WORK_DIR
+echo "Executing cmsRun..."
 cmsRun dcs_trend_monitor_cfg.py
-mv *.png *.csv $OUTPUT_DIR
-python $WORK_DIR/../autoInspector.py $OUTPUT_DIR
+python3 $WORK_DIR/../autoInspector.py $WORK_DIR
+
+echo "Copy files on eos:"$EOS_OUTPUT_DIR
+xrdcp -f *.png root://eosuser.cern.ch//$EOS_OUTPUT_DIR
+xrdcp -f *.csv root://eosuser.cern.ch//$EOS_OUTPUT_DIR
+
+cronFile="/data/users/event_display/dpgtkdqm/cronjobs/cronlogs/DCSTrend_cron.log"
+xrdcp -f $cronFile root://eosuser.cern.ch//$EOS_OUTPUT_DIR 
+
