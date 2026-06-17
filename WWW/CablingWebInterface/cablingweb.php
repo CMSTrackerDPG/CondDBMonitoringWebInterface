@@ -1,10 +1,11 @@
 <H1>GET Cabling, PowerGroupName, PSUname info and a TrackerMap</H1>
 
 
-<?php
-	include 'cablingweb_lib_post.php';
-	include 'cablingweb_lib_select.php';
-	include 'cablingweb_utils.php';
+<?php   
+        set_include_path('/opt/app-root/src/CablingWebInterface');
+	include_once '/opt/app-root/src/CablingWebInterface/cablingweb_lib_post.php';
+	include_once '/opt/app-root/src/CablingWebInterface/cablingweb_lib_select.php';
+	include_once '/opt/app-root/src/CablingWebInterface/cablingweb_utils.php';
 	
 	$inpfile = "";
 	$plotwidth = "1200";
@@ -34,7 +35,7 @@
 	$tagSel = ""; 
 	
 	#### TO BE CHANGED
-	$directory_tags = "/data/users/event_display/CondDBMonitoringWebInterface/CondDBMonitoringWebInterface/WWW/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
+	$directory_tags = "/eos/cms/store/group/tracker-cctrack/www/CondDBMonitoringWebInterface/CondDBMonitoring/pro/CMS_CONDITIONS/DBTagCollection/SiStripFedCabling/";
 	#### TO BE CHANGED
 	
 	$list_tags_iovs = GenerateTags($directory_tags);
@@ -109,43 +110,43 @@
 
 		<form enctype = "multipart/form-data" action = "cablingweb.php" method = "POST">
 		<input type = "hidden" name = "MAX_FILE_SIZE" value = "500000" />
-		<input type="hidden" name="outgrafic" value="/tmp/ourmap_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outfile" value="/tmp/ourfile_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outinfomodules" value="/tmp/ourinfomodules_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outgrafic" value="./output/ourmap_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outfile" value="./output/ourfile_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outinfomodules" value="./output/ourinfomodules_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 	
-		<input type="hidden" name="outDetidsofalias" value="/tmp/ourDetidsofalias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="grafAliastkm" value="/tmp/ourgrafAliastkm_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outDetidstoHv" value="/tmp/ourDetidstoHv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="grafHvtkm" value="/tmp/ourgrafHvtkm_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outHvAliascom" value="/tmp/ourHvAliascom_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outAliastohv" value="/tmp/ourAliastohv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outCabofAlias" value="/tmp/ourCabofAlias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outDetidsofalias" value="./output/ourDetidsofalias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafAliastkm" value="./output/ourgrafAliastkm_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outDetidstoHv" value="./output/ourDetidstoHv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafHvtkm" value="./output/ourgrafHvtkm_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outHvAliascom" value="./output/ourHvAliascom_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outAliastohv" value="./output/ourAliastohv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outCabofAlias" value="./output/ourCabofAlias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 
 
-		<input type="hidden" name="grafModulescommonhv" value="/tmp/ourgrafModulescommonhv_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outHvofAlias" value="/tmp/ourHvofAlias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outHvmodcom" value="/tmp/ourHvmodcom_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outHvAliasinfo" value="/tmp/ourHvAliasinfo_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outCabofhv" value="/tmp/ourCabofhv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outCabmodalias" value="/tmp/ourCabmodalias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafModulescommonhv" value="./output/ourgrafModulescommonhv_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outHvofAlias" value="./output/ourHvofAlias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outHvmodcom" value="./output/ourHvmodcom_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outHvAliasinfo" value="./output/ourHvAliasinfo_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outCabofhv" value="./output/ourCabofhv_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outCabmodalias" value="./output/ourCabmodalias_<?php echo time() . "-" . mt_rand (); ?>.txt" />
 
-		<input type="hidden" name="outModofCab" value="/tmp/ourModofCab_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="grafModofCabtm" value="/tmp/ourgrafModofCabtm_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outinfofeds" value="/tmp/ourinfofeds_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outinfofecs" value="/tmp/ourinfofecs_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outDetidsofFedstrm" value="/tmp/ouroutDetidsofFedstrm_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outDetidsofFecstrm" value="/tmp/ouroutDetidsofFecstrm_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outAliasforCabling" value="/tmp/ourAliasforCabling_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outhvofcab" value="/tmp/ourhvofcab_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outAliasModules" value="/tmp/ourAliasModules_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outInfoModuleHV" value="/tmp/ourInfoModuleHV_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="grafDetIdsCab" value="/tmp/ourgrafDetIdsCab_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outinfomodules" value="/tmp/ourinfomodules_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outDetIdsCab" value="/tmp/ourDetIdsCab_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="grafcabling" value="/tmp/ourgrafcabling_<?php echo time(); ?>.png" />
-		<input type="hidden" name="outdetids" value="/tmp/ouroutdetids_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="outDetidsofDetIDtrm" value="/tmp/ouroutDetidsofDetIDtrm_<?php echo time() . "-" . mt_rand (); ?>.txt" />
-		<input type="hidden" name="grafModofdetidtm" value="/tmp/ourgrafModofdetidtm_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outModofCab" value="./output/ourModofCab_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafModofCabtm" value="./output/ourgrafModofCabtm_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outinfofeds" value="./output/ourinfofeds_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outinfofecs" value="./output/ourinfofecs_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outDetidsofFedstrm" value="./output/ouroutDetidsofFedstrm_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outDetidsofFecstrm" value="./output/ouroutDetidsofFecstrm_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outAliasforCabling" value="./output/ourAliasforCabling_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outhvofcab" value="./output/ourhvofcab_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outAliasModules" value="./output/ourAliasModules_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outInfoModuleHV" value="./output/ourInfoModuleHV_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafDetIdsCab" value="./output/ourgrafDetIdsCab_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outinfomodules" value="./output/ourinfomodules_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outDetIdsCab" value="./output/ourDetIdsCab_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafcabling" value="./output/ourgrafcabling_<?php echo time(); ?>.png" />
+		<input type="hidden" name="outdetids" value="./output/ouroutdetids_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="outDetidsofDetIDtrm" value="./output/ouroutDetidsofDetIDtrm_<?php echo time() . "-" . mt_rand (); ?>.txt" />
+		<input type="hidden" name="grafModofdetidtm" value="./output/ourgrafModofdetidtm_<?php echo time(); ?>.png" />
 		
 
 
@@ -537,15 +538,17 @@
 					}
 					
 					// SHOW BUILT COMMAND
-					echo "Command sent:";
+					//$re = exec('whoami');
+					//$grp = exec('groups' . $re);
+					echo "Command sent:" . $re . $grp . "<br>";
 					echo "<br>" . $command . "<br>";
 //					system($command);
 					$res = exec($command);
 					echo $res . "<br>";
 
-					exec ("rm -f temp/*");
+//					exec ("rm -f temp/*");
 // 					exec ("mkdir temp");
-					exec ("mv DetIdCab.txt temp/");
+					exec ("mv DetIdCab.txt ./output/");
 					exec ("mv ModulestoFeds.txt $outinfomodules");
 					exec ("mv Modulescommonhv.png $grafModulescommonhv");
 
@@ -553,9 +556,9 @@
 					exec ("mv Modulescommonhv.png $grafModulescommonhv");
 					exec ("mv HvAliasinfo.txt $outHvAliasinfo");
 
-					exec ("mv file.txt temp/");
-					exec ("mv $inpfile temp/");
-					exec ("mv CablingInfo* temp/");
+					exec ("mv file.txt ./output/");
+					exec ("mv $inpfile ./output/");
+					exec ("mv CablingInfo* ./output/");
 			
 					echo "</a><br><br>";
 
