@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo $(whoami)
-EXEC_PATH=/data/users/event_display/dpgtkdqm/remotescripts/StripCabling/CablingWebInterface/
+EXEC_PATH=/data/users/event_display/dpgtkdqm/remotescripts/StripCabling/CondDBMonitoringWebInterface/WWW/CablingWebInterface/
 
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 RELEASE_PATH=/data/users/event_display/dpgtkdqm/remotescripts/StripCabling/CMSSW_14_0_14

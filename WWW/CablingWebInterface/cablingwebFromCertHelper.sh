@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /data/users/event_display/dpgtkdqm/remotescripts/StripCabling/CablingWebInterface
+cd /data/users/event_display/dpgtkdqm/remotescripts/StripCabling/CondDBMonitoringWebInterface/WWW/CablingWebInterface
 rm ./output/*
 
 partype=$1
